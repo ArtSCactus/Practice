@@ -9,6 +9,9 @@ import static java.lang.Math.cos;
 import static java.lang.Math.pow;
 import static java.lang.Math.sin;
 import static java.lang.Math.sqrt;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Step1Tasks {
     public static void functionValidation(int correctAnswer, int function){
@@ -17,6 +20,10 @@ public class Step1Tasks {
     }
         public static void functionValidation(double correctAnswer, double function){
         if (correctAnswer==function) System.out.println("The answer is correct. ");
+        else System.out.println("The answer is NOT correct. Expected: "+correctAnswer+ " Got: "+ function);
+    }
+                public static void functionValidation(String correctAnswer, String function){
+        if (correctAnswer.equals(function)) System.out.println("The answer is correct. ");
         else System.out.println("The answer is NOT correct. Expected: "+correctAnswer+ " Got: "+ function);
     }
 public static int task1_1(int a, int b, int c){
@@ -35,16 +42,18 @@ public static double task1_3(int x, int y){
 public static double task1_4(double number){
 String fraction="";
 String wholePart="";
-short counter=0;
+boolean firstPartPassed=false;
        for (String buffer : Double.toString(number).split("\\.")) {
-           if(counter==0){ wholePart=buffer;
-            counter++;}
+           if(firstPartPassed==false){ wholePart=buffer;
+            firstPartPassed=true;}
             else fraction=buffer;
         }
       String result=fraction+"."+wholePart;
 return Double.parseDouble(result);
 }
-
+public static String task1_5(int seconds){
+  return new SimpleDateFormat("HHч:mmмин:ssс").format(new Date(TimeUnit.SECONDS.toMillis(seconds)));
+}
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("--------Line programs--------");
@@ -52,6 +61,8 @@ return Double.parseDouble(result);
         functionValidation(0.25, task1_2(1,2,3,4));
         functionValidation(-7.1454455496388025, task1_3(1,1));
         functionValidation(456.123, task1_4(123.456));
+        functionValidation("04ч:00мин:00с",task1_5(3600));
+        
     }
     
 }
