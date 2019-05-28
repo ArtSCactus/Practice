@@ -5,7 +5,9 @@
  */
 package step1tasks.Practice;
 
+import static java.lang.Math.cos;
 import static java.lang.Math.pow;
+import static java.lang.Math.sin;
 import static java.lang.Math.sqrt;
 
 public class Step1Tasks {
@@ -26,11 +28,30 @@ public static double task1_2(double a, double b, double c, double z){
     return result;
 }
 
+public static double task1_3(int x, int y){
+    double result =((sin(x)+cos(y))/(cos(x)-sin(y)))*(sin(x*y)/cos(x*y));
+    return result;
+}
+public static double task1_4(double number){
+String fraction="";
+String wholePart="";
+short counter=0;
+       for (String buffer : Double.toString(number).split("\\.")) {
+           if(counter==0){ wholePart=buffer;
+            counter++;}
+            else fraction=buffer;
+        }
+      String result=fraction+"."+wholePart;
+return Double.parseDouble(result);
+}
+
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("--------Line programs--------");
         functionValidation(4, task1_1(2,4,6));
         functionValidation(0.25, task1_2(1,2,3,4));
+        functionValidation(-7.1454455496388025, task1_3(1,1));
+        functionValidation(456.123, task1_4(123.456));
     }
     
 }
