@@ -6,18 +6,23 @@
 package step1tasks.Practice;
 
 public class Step1Tasks {
+    /**Validates the answer of function. Current type of variables - int.*/
     public static void functionValidation(int correctAnswer, int function){
         if (correctAnswer==function) System.out.println("The answer is correct. ");
         else System.out.println("The answer is NOT correct. Expected: "+correctAnswer+ " Got: "+ function);
-    }
+    }    
+    
+    /**Validates the answer of function. Current type of variables - double.*/
         public static void functionValidation(double correctAnswer, double function){
         if (correctAnswer==function) System.out.println("The answer is correct. ");
         else System.out.println("The answer is NOT correct. Expected: "+correctAnswer+ " Got: "+ function);
     }
+            /**Validates the answer of function. Current type of variables - string.*/
                 public static void functionValidation(String correctAnswer, String function){
         if (correctAnswer.equals(function)) System.out.println("The answer is correct. ");
         else System.out.println("The answer is NOT correct. Expected: "+correctAnswer+ " Got: "+ function);
     }
+                    /**Validates the answer of function. Current type of variables - boolean.*/
                                 public static void functionValidation(boolean correctAnswer, boolean function){
         if (correctAnswer==function) System.out.println("The answer is correct. ");
         else System.out.println("The answer is NOT correct. Expected: "+correctAnswer+ " Got: "+ function);
@@ -27,7 +32,6 @@ public class Step1Tasks {
 
 
     public static void main(String[] args) {
-        // TODO code application logic here
         System.out.println("--------Line programs--------");
         functionValidation(4, Task1_1.task1_1(2,4,6));
         functionValidation(0.25, Task1_2.task1_2(1,2,3,4));

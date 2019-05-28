@@ -10,6 +10,7 @@ package step1tasks.Practice;
  * @author Asusq
  */
 public class Task1_2 {
+    /** Returns the quad root from inputed number*/
         public static double findRoot(double number){ 
         double result =0.000000000000000000000000001;
         while(true)
