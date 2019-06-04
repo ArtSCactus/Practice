@@ -4,14 +4,19 @@
  * and open the template in the editor.
  */
 package step1tasks.Practice;
+
 /**
  *
  * @author ArtSCactus
  */
-
-public class Task1_1 {
-    public static int task1_1(int a, int b, int c){
-    int z = ((a-3)*b/2)+c;
-    return z;
-}
+public class Task3_3 {
+    public static int  task3_3(){
+        int counter=0;
+        int summ=0;
+        while (counter<100){
+            summ+=counter*counter;
+            counter++;
+        }
+        return summ;
+    }
 }

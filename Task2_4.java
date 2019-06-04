@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 package step1tasks.Practice;
+
 /**
  *
  * @author ArtSCactus
  */
-
-public class Task1_1 {
-    public static int task1_1(int a, int b, int c){
-    int z = ((a-3)*b/2)+c;
-    return z;
-}
+public class Task2_4 {
+    public static boolean task2_4(double A, double B, double x, double y, double z){
+        if (y>A & z>B || z>A & y>B) return false;
+        else return true;
+    }
 }

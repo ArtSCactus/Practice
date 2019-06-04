@@ -7,7 +7,7 @@ package step1tasks.Practice;
 
 /**
  *
- * @author Asusq
+ * @author ArtSCactus
  */
 public class Task1_6 {
     public static boolean task1_6(double x, double y) {

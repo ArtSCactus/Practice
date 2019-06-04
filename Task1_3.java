@@ -10,11 +10,11 @@ import static java.lang.Math.sin;
 
 /**
  *
- * @author Asusq
+ * @author ArtSCactus
  */
 public class Task1_3 {
     public static double task1_3(int x, int y){
     double result =((sin(x)+cos(y))/(cos(x)-sin(y)))*(sin(x*y)/cos(x*y));
-    return result;
+    return result;                                        
 }
 }

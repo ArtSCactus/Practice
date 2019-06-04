@@ -7,7 +7,7 @@ package step1tasks.Practice;
 
 /**
  *
- * @author Asusq
+ * @author ArtSCactus
  */
 public class Task1_4 {
  public static double task1_4(double number){

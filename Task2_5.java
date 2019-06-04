@@ -4,14 +4,16 @@
  * and open the template in the editor.
  */
 package step1tasks.Practice;
+
 /**
  *
  * @author ArtSCactus
  */
-
-public class Task1_1 {
-    public static int task1_1(int a, int b, int c){
-    int z = ((a-3)*b/2)+c;
-    return z;
-}
+public class Task2_5 {
+    public static int task2_5(int x){
+        int result=0;
+        if (x==3) result=x*x-3*x+9;
+        else result=1/(x*x*x+6);
+        return result;
+    }
 }

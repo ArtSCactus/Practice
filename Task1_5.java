@@ -7,7 +7,7 @@ package step1tasks.Practice;
 
 /**
  *
- * @author Asusq
+ * @author ArtSCactus
  */
 public class Task1_5 {
     public static String task1_5(int seconds){
