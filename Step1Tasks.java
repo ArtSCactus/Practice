@@ -162,15 +162,15 @@ public class Step1Tasks {
                   System.out.println("Hash code: "+Task3_6.task3_6(symbol));
                 break;
             case (37):
-                System.out.println("Input start number: ");
+                System.out.println("Input start number (int): ");
                 a=in.nextInt();
-                System.out.println("Input end number: ");
+                System.out.println("Input end number (int): ");
                 b=in.nextInt();
                 Task3_7.task3_7(a,b);
             case (38):
-                System.out.println("Input first number: ");
+                System.out.println("Input first number (int): ");
                a=in.nextInt();
-                               System.out.println("Input second number: ");
+                               System.out.println("Input second number(int): ");
                b=in.nextInt();
                Task3_8.task3_8(a, b);
                break;
