@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package step1tasks.Practice;
+package Basics;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;

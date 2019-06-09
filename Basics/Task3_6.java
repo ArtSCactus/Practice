@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package step1tasks.Practice;
+package Basics;
+
 /**
  *
  * @author ArtSCactus
  */
-
-public class Task1_1 {
-    public static int task1_1(int a, int b, int c){
-    int z = ((a-3)*b/2)+c;
-    return z;
+public class Task3_6 {
+    public static Object task3_6(Object symbol){
+   return symbol.hashCode();
 }
 }

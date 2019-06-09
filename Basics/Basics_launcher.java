@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package step1tasks.Practice;
+package Practice.Basics;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Step1Tasks {
+public class Basics_launcher {
 
     public static void main(String[] args) {
         System.out.println("Input task number (example: 21 means part 2 task 1): ");
