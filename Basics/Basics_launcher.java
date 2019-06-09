@@ -8,9 +8,14 @@ package Practice.Basics;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ *
+ * @author ArtSCactus
+ */
 public class Basics_launcher {
 
-    public static void main(String[] args) {
+    public static void launchBasicsUnit() {
+              System.out.println("\f");
         System.out.println("Input task number (example: 21 means part 2 task 1): ");
         Scanner in = new Scanner(System.in);
         int taskNumber = in.nextInt();
