@@ -12,31 +12,32 @@ import java.util.Scanner;
  *
  * @author ArtSCactus
  */
-public class OneDim_03 {
+public class OneDim_04 {
 
     public static void doTask() {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter massive size: ");
         int[] massive = new int[in.nextInt()];
-        int posCounter = 0;
-        int negCounter = 0;
-        int zeroCounter = 0;
         System.out.println("Input massive elements: ");
         for (int index = 0; index < massive.length; index++) {
             massive[index] = in.nextInt();
-            if (massive[index] > 0) {
-                posCounter++;
-            } else {
-                if (massive[index] == 0) {
-                    zeroCounter++;
-                } else {
-                    negCounter++;
-                }
+        }
+        int theSmallest = massive[0];
+        int theBiggest = 0;
+        int theSmallestIndexSaver = 0;
+        int theBiggestIndexSaver = 0;
+        for (int index = 0; index < massive.length; index++) {
+            if (massive[index] < theSmallest) {
+                theSmallest = massive[index];
+                theSmallestIndexSaver = index;
+            }
+            if (massive[index] > theBiggest) {
+                theBiggest = massive[index];
+                theBiggestIndexSaver = index;
             }
         }
+        massive[theSmallestIndexSaver] = theBiggest;
+        massive[theBiggestIndexSaver] = theSmallest;
         System.out.println("Massive: " + Arrays.toString(massive));
-        System.out.println("Positive numbesr: " + posCounter);
-        System.out.println("Negative numbesr: " + negCounter);
-        System.out.println("Number of 0: " + zeroCounter);
     }
 }

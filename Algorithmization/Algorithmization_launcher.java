@@ -47,6 +47,9 @@ public class Algorithmization_launcher {
             case (13):
                 OneDim_03.doTask();
                 break;
+            case (14):
+                OneDim_04.doTask();
+                break;
         }
     }
 }
