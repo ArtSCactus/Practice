@@ -27,7 +27,7 @@ public class OneDim_08 {
         System.out.println("Source massive: " + Arrays.toString(numbers));
         // search for min element
         int minElement = numbers[0];
-        int counterOfMinElements = 0;
+        int counterOfMinElements =1;
         for (int index = 0; index < numbers.length; index++) {
             if (numbers[index] < minElement) {
                 minElement = numbers[index];
