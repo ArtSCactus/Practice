@@ -18,11 +18,11 @@ public class OneDim_02 {
        System.out.println("Enter number Z: ");
        int numberZ = in.nextInt();
         System.out.println("Enter the row size: ");
-        int[] row = new int[in.nextInt()];
+        double[] row = new double[in.nextInt()];
         for (int index =0; index<row.length; index++)
         {
-            System.out.println("Enter element ["+index+"]:");
-            row[index]=in.nextInt();
+            System.out.println("Enter element ["+index+"] (double):");
+            row[index]=in.nextDouble();
         }
      for (int index=0; index<row.length; index++)
             if (row[index]>numberZ) row[index] =numberZ;

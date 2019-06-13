@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Basics_launcher {
 
     public static void launchBasicsUnit() {
-              System.out.println("\f");
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Input task number (example: 21 means part 2 task 1): ");
         Scanner in = new Scanner(System.in);
         int taskNumber = in.nextInt();

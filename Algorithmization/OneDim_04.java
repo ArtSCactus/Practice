@@ -17,13 +17,14 @@ public class OneDim_04 {
     public static void doTask() {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter massive size: ");
-        int[] massive = new int[in.nextInt()];
+        double[] massive = new double[in.nextInt()];
         System.out.println("Input massive elements: ");
         for (int index = 0; index < massive.length; index++) {
-            massive[index] = in.nextInt();
+                                    System.out.print("Element ["+index+"](double): ");
+            massive[index] = in.nextDouble();
         }
-        int theSmallest = massive[0];
-        int theBiggest = 0;
+        double theSmallest = massive[0];
+        double theBiggest = 0;
         int theSmallestIndexSaver = 0;
         int theBiggestIndexSaver = 0;
         for (int index = 0; index < massive.length; index++) {

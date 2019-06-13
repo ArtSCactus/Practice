@@ -14,11 +14,12 @@ import java.util.Scanner;
 public class Algorithmization_launcher {
 
     public static void launchAlgUnit() {
-        System.out.println("Task numbers: \nOne-dimension massives(1):");
-        System.out.println("Massives of massives(2)");
-        System.out.println("Sortng(3)");
-        System.out.println("Decomposition(4)");
-        System.out.println("Enter task number you want:");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("Task numbers: \n1-One-dimension massives:");
+        System.out.println("2-Massives of massives");
+        System.out.println("3-Sortng");
+        System.out.println("4-Decomposition");
+        System.out.println("5- Enter task number you want:");
         System.out.println("P.s. for example, 11 means One-dimension massive, task №1");
         /* for (int index = 1; index < 11; index++) {
             System.out.println("1" + index + "-№" + index);
@@ -49,6 +50,39 @@ public class Algorithmization_launcher {
                 break;
             case (14):
                 OneDim_04.doTask();
+                break;
+            case (15):
+                OneDim_05.doTask();
+                break;
+            case (16):
+                OneDim_06.doTask();
+                break;
+            case (17):
+                OneDim_07.doTask();
+                break;
+            case (18):
+                OneDim_08.doTask();
+                break;
+            case (19):
+                OneDim_09.doTask();
+                break;
+            case (110):
+                OneDim_10.doTask();
+                break;
+            case (21):
+                MassiveOfMassives_01.doTask();
+                break;
+            case (22):
+                MassiveOfMassives_02.doTask();
+                break;
+            case (23):
+                MassiveOfMassives_03.doTask();
+                break;
+            case (24):
+                MassiveOfMassives_04.doTask();
+                break;
+            default:
+                System.out.println();
                 break;
         }
     }
