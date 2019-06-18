@@ -14,12 +14,13 @@ import java.util.Scanner;
  * @author ArtSCactus
  */
 public class Global_launcher {
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         System.out.println("1-Basics of code development\n2-Algorithmization(work in progress)");
-                System.out.println("Please, choose the unit: ");
+        System.out.println("Please, choose the unit: ");
         Scanner in = new Scanner(System.in);
-        int unitNumber=in.nextInt();
-        switch(unitNumber){
+        int unitNumber = in.nextInt();
+        switch (unitNumber) {
             case (1):
                 Basics_launcher.launchBasicsUnit();
                 break;

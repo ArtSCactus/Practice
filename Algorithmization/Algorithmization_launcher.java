@@ -93,6 +93,30 @@ public class Algorithmization_launcher {
             case (28):
                 MassiveOfMassives_08.doTask();
                 break;
+            case (29):
+                MassiveOfMassives_09.doTask();
+                break;
+            case (210):
+                MassiveOfMassives_10.doTask();
+                break;
+            case (211):
+                MassiveOfMassives_11.doTask();
+                break;
+            case (212):
+                MassiveOfMassives_12.doTask();
+                break;
+            case (213):
+                MassiveOfMassives_13.doTask();
+                break;
+            case (214):
+                MassiveOfMassives_14.doTask();
+                break;
+            case (215):
+                MassiveOfMassives_15.doTask();
+                break;
+            case (216):
+                MassiveOfMassives_16.doTask();
+                break;
             default:
                 System.out.println("No such task number.");
                 break;
