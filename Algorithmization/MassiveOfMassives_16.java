@@ -5,125 +5,179 @@
  */
 package Practice.Algorithmization;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
  *
- * @author ArtSCactus
- * This method of constructing a magic square was developed by me, without using third-party formulas and methods. 
- * It is based on equalizing the sum of the elements (through splitting the difference between the principal sum and the sum
- * in each row / column / diagonal into numbers) on the zero row.
- * How is going  the alignment:
- * 1. We are taking sum is in the current row / column / diagonal.
- * 2. Calculating the difference between the sum in the current row / column / diagonal.
- * 3. This difference is divided into numbers, which, when added, give this very difference, then these numbers are added / 
+ * @author ArtSCactus This method of constructing a magic square was developed
+ * by me, without using third-party formulas and methods. It is based on
+ * equalizing the sum of the elements (through splitting the difference between
+ * the principal sum and the sum in each row / column / diagonal into numbers)
+ * on the zero row. How is the alignment: 1. The sum is in the current row /
+ * column / diagonal. 2. Calculates the difference between the sum in the
+ * current row / column / diagonal. 3. This difference is divided into numbers,
+ * which, when added, give this very difference, then these numbers are added /
  * subtracted according to each element in this row / column / diagonal.
  *
- * 
+ * At the moment, my method has the following disadvantage (solved): when
+ * aligning the sums of the matrix, negative numbers may appear in it.
  */
 public class MassiveOfMassives_16 {
 
-    /**
-     * Returns a massive of elements, that in summ will give number.
-     * numberOfItems - number of times, that you need get, after number dividing
-     *
-     * @param number;
-     * @param numberOfItems;
-     * @return theTerms (int[]);
-     */
-    private static int[] splitNumber(int number, int numberOfItems) {
-        int[] theTerms = new int[numberOfItems];
-        int summOfElements = 0;
-        for (int index = 0; index < theTerms.length; index++) {
-            theTerms[index] = 1;
+    public static void doTask() {
+        int n = 0, square[][];
+        System.out.print("Enter matrixOrder: ");
+        Scanner in = new Scanner(System.in);
+        n = in.nextInt();
+        in.close();
+        System.out.println();
+        if (n % 4 == 0) {
+            square = magicSquareDoublyEven(n);
+        } else if (n % 2 != 0) {
+            square = magicSquareOdd(n);
+        } else {
+            square = magicSquareSinglyEven(n);
         }
-        for (int index = 0; index < theTerms.length; index++) {
-            summOfElements += theTerms[index];
-        }
-        if (summOfElements > number) {
-            System.out.println("Exception! " + number + " cannot be divided on " + numberOfItems + " (int) items. Please, check the summ of massive.");
-            System.out.println("Trying to solve it.");
-            boolean summReached=false; // flag signals, that current summ of elements is now equals *number*;
-            int summBeforeZeroPoint=0;
-            for (int index=0; index<theTerms.length; index++){
-                if (summBeforeZeroPoint== number) theTerms[index]=0;
-                else summBeforeZeroPoint+=theTerms[index];
-            }
-            // Validation if the Exception resolved
-             summOfElements=0;
-                   for (int index = 0; index < theTerms.length; index++) {
-            summOfElements += theTerms[index];
-        }
-                    if (summOfElements==number){
-                        System.out.println("Exception successfully resolved.");
-                    }
-                    else  {System.out.println("Exception resolving are failed. Return null"); return null;}
+        displaySquare(square);
+        System.out.println();
+        //System.out.println("The magic number is: "+(n*(n*n+1))/2);
+    }
 
-        } else if (summOfElements == number) {
-            return theTerms;
-        }
-        int currentElementNumber = 0;
-        while (true) {
-            summOfElements = 0;
-            for (int index = 0; index < theTerms.length; index++) {
-                summOfElements += theTerms[index];
+    static int[][] magicSquareOdd(int n) {
+        int num = 1, row, col;
+        int[][] square = new int[n][n];
+        row = n / 2;
+        col = n - 1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                square[i][j] = 0;
             }
-            if (summOfElements == number) {
-                break;
+        }
+        while (num <= n * n) {
+
+            if (row < 0 && col >= n) {
+                row = 0;
+                col = n - 2;
             } else {
-                theTerms[currentElementNumber]++;
-                if (currentElementNumber == theTerms.length - 1) {
-                    currentElementNumber = 0;
-                } else {
-                    currentElementNumber++;
+                if (row < 0) {
+                    row = row + n;
+                } else if (col >= 0) {
+                    col = col % n;
+                }
+
+            }
+            if (square[row][col] != 0) {
+                row = row + 1;
+                col = col - 2;
+                continue;
+            } else {
+                square[row][col] = num++;
+            }
+            row = row - 1;
+            col = col + 1;
+        }
+        return square;
+    }
+
+    static int[][] magicSquareDoublyEven(int n) {
+        int[][] square = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                square[i][j] = 4 * i + j + 1;
+            }
+        }
+        for (int i = 0; i < n / 4; i++) {
+            for (int j = 0; j < n / 4; j++) {
+                square[i][j] = n * n + 1 - square[i][j];
+            }
+        }
+        for (int i = 0; i < n / 4; i++) {
+            for (int j = 3 * n / 4; j < n; j++) {
+                square[i][j] = n * n + 1 - square[i][j];
+            }
+        }
+        for (int i = 3 * n / 4; i < n; i++) {
+            for (int j = 0; j < n / 4; j++) {
+                square[i][j] = n * n + 1 - square[i][j];
+            }
+        }
+        for (int i = 3 * n / 4; i < n; i++) {
+            for (int j = 3 * n / 4; j < n; j++) {
+                square[i][j] = n * n + 1 - square[i][j];
+            }
+        }
+        for (int i = n / 4; i < 3 * n / 4; i++) {
+            for (int j = n / 4; j < 3 * n / 4; j++) {
+                square[i][j] = n * n + 1 - square[i][j];
+            }
+        }
+        return square;
+    }
+
+    static void displaySquare(int[][] square) {
+        int n = square.length;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print(square[i][j] + "\t");
+            }
+            System.out.println("\n");
+        }
+    }
+
+    static int[][] magicSquareSinglyEven(int n) {
+        if (n == 2) {
+            System.out.println("No normal magic square of order 2 exists!");
+            //System.exit(0);
+            int number = 1 + (int) (Math.random() * (n * n) + 1);
+                    int[][] square = new int[n][n];
+                    for (int indexX=0; indexX<n; indexX++)
+                        for (int indexY=0; indexY<n; indexY++)
+                        square[indexX][indexY] = number;
+                    return square;
+        }
+        int[][] square = new int[n][n];
+        int[][] quarter;
+        quarter = magicSquareOdd(n / 2);
+
+        //for top left quarter square
+        for (int i = 0; i < n / 2; i++) {
+            for (int j = 0; j < n / 2; j++) {
+                square[i][j] = quarter[i][j];
+                square[n / 2 + i][n / 2 + j] = quarter[i][j] + (n * n) / 4;
+                square[i][n / 2 + j] = quarter[i][j] + (n * n) / 2;
+                square[n / 2 + i][j] = quarter[i][j] + 3 * (n * n) / 4;
+            }
+        }
+        int k = (n - 1) / 4;
+
+        for (int i = 0; i < k; i++) {
+            for (int j = 0; j < n / 2; j++) {
+                int temp = square[j][i];
+                square[j][i] = square[j + n / 2][i];
+                square[j + n / 2][i] = temp;
+                if ((i + 1) < k) {
+                    temp = square[j][n - i - 1];
+                    square[j][n - i - 1] = square[j + n / 2][n - i - 1];
+                    square[j + n / 2][n - i - 1] = temp;
                 }
             }
         }
-        return theTerms;
+
+        //undo the unneccessary swap
+        int temp = square[n / 4][k - 1];
+        square[n / 4][k - 1] = square[3 * n / 4][k - 1];
+        square[3 * n / 4][k - 1] = temp;
+
+        //swap the diagonal elements
+        temp = square[n / 4][k];
+        square[n / 4][k] = square[3 * n / 4][k];
+        square[3 * n / 4][k] = temp;
+
+        return square;
     }
 
-    public static void doTask() {
-        // declaration of massive/variables and it's initialization
-        Scanner in = new Scanner(System.in);
-        System.out.println("Enter matrix order: ");
-        int matrixOrder = in.nextInt();
-        int[][] matrix = new int[matrixOrder][matrixOrder];
-        // matrix filling
-        for (int indexY = 0; indexY < matrixOrder; indexY++) {
-            for (int indexX = 0; indexX < matrixOrder; indexX++) {
-                matrix[indexX][indexY] = 1 + (int) (Math.random() * (matrixOrder * matrixOrder) + 1);
-            }
-        }
-        int sourceSum = 0;
-        int[] dividedDifference;
-        int bufferSum;
-        for (int indexX = 0; indexX < matrixOrder; indexX++) {
-            sourceSum += matrix[indexX][0];
-        }
-        System.out.println("Source sum "+sourceSum);
-        boolean done =false;
-        int[] dividedDif;
-/*while (true){
-     int buffer=0;
-    for (int indexX=0; indexX<matrixOrder; indexX++){
-       buffer=0;
-        for (int indexY=0; indexY<matrixOrder; indexY++){
-            buffer+=matrix[indexX][indexY];
-        }
-        if (buffer!=sourceSum){
-            if (buffer>sourceSum) {
-                dividedDif=splitNumber(buffer-sourceSum,matrixOrder);
-            }
-        }
-    }
-}*/
-        // matrix output
-        System.out.println("Source matrix: ");
-        for (int indexY = 0; indexY < matrixOrder; indexY++) {
-            for (int indexX = 0; indexX < matrixOrder; indexX++) {
-                System.out.print(matrix[indexX][indexY] + " ");
-            }
-            System.out.println();
-        }
+    public static void main(String args[]) {
+
     }
 }
