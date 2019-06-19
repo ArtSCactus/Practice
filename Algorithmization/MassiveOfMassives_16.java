@@ -5,29 +5,17 @@
  */
 package Practice.Algorithmization;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
  *
- * @author ArtSCactus This method of constructing a magic square was developed
- * by me, without using third-party formulas and methods. It is based on
- * equalizing the sum of the elements (through splitting the difference between
- * the principal sum and the sum in each row / column / diagonal into numbers)
- * on the zero row. How is the alignment: 1. The sum is in the current row /
- * column / diagonal. 2. Calculates the difference between the sum in the
- * current row / column / diagonal. 3. This difference is divided into numbers,
- * which, when added, give this very difference, then these numbers are added /
- * subtracted according to each element in this row / column / diagonal.
- *
- * At the moment, my method has the following disadvantage (solved): when
- * aligning the sums of the matrix, negative numbers may appear in it.
+ * @author ArtSCactus T
  */
 public class MassiveOfMassives_16 {
 
     public static void doTask() {
         int n = 0, square[][];
-        System.out.print("Enter matrixOrder: ");
+        System.out.print("Enter matrix Order: ");
         Scanner in = new Scanner(System.in);
         n = in.nextInt();
         in.close();
@@ -41,7 +29,6 @@ public class MassiveOfMassives_16 {
         }
         displaySquare(square);
         System.out.println();
-        //System.out.println("The magic number is: "+(n*(n*n+1))/2);
     }
 
     static int[][] magicSquareOdd(int n) {
@@ -175,9 +162,5 @@ public class MassiveOfMassives_16 {
         square[3 * n / 4][k] = temp;
 
         return square;
-    }
-
-    public static void main(String args[]) {
-
     }
 }
