@@ -9,7 +9,7 @@ package Practice;
  *
  * @author ArtSCactus
  */
-public class DivideOnNumbersAlgorithm {
+public class SplitOnNumbersAlgorithm {
       /**
      * Returns a massive of elements, that in summ will give number.
      * numberOfItems - number of times, that you need get, after number dividing

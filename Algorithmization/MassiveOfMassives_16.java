@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author ArtSCactus T
+ * @author ArtSCactus
  */
 public class MassiveOfMassives_16 {
 

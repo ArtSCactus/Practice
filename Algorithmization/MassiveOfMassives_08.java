@@ -18,7 +18,7 @@ public class MassiveOfMassives_08 {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter matrix size by X: ");
         int sideSize = in.nextInt();
-        System.out.println("Enter mtrix size by Y: ");
+        System.out.println("Enter matrix size by Y: ");
         int downSize = in.nextInt();
         int[][] matrix = new int[sideSize][downSize];
         System.out.println("Type of cell call: cell[X][Y]");

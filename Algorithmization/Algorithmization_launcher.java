@@ -117,6 +117,12 @@ public class Algorithmization_launcher {
             case (216):
                 MassiveOfMassives_16.doTask();
                 break;
+            case (31):
+                OneDimSorting_01.doTask();
+                break;
+            case (32):
+                OneDimSorting_02.doTask();
+                break;
             default:
                 System.out.println("No such task number.");
                 break;
