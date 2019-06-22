@@ -12,12 +12,12 @@ import java.util.Scanner;
  *
  * @author ArtSCactus
  */
-public class OneDimSorting_02 {
+public class OneDimSorting_03 {
 
     public static void doTask() {
         // declaration of massives/variables and it's initialization
         Scanner in = new Scanner(System.in);
-        System.out.println("Enter first massive size (enter 0 for random size between 1 and 100): ");
+        System.out.println("Enter massive size (enter 0 for random size between 1 and 100): ");
         int firstSize = in.nextInt();
         while (true) {
             if (firstSize == 0) {
@@ -27,18 +27,7 @@ public class OneDimSorting_02 {
                 System.out.println("The massive size cannot be less then 0!");
             }
         }
-        System.out.println("Enter second massive size (enter 0 for random size between 1 and 100): ");
-        int secondSize = in.nextInt();
-        while (true) {
-            if (secondSize == 0) {
-                secondSize = 1 + (int) (Math.random() * (100 + 1));
-                break;
-            } else if (secondSize < 0) {
-                System.out.println("The massive size cannot be less then 0!");
-            }
-        }
         int[] firstMassive = new int[firstSize];
-        int[] secondMassive = new int[secondSize];
         System.out.println("0 - Auto filling\n1 - Manual filling");
         int inputOption;
         while (true) {
@@ -53,43 +42,43 @@ public class OneDimSorting_02 {
             for (int index = 0; index < firstMassive.length; index++) {
                 firstMassive[index] = 0 + (int) (Math.random() * (100 + 1));
             }
-            for (int index = 0; index < secondMassive.length; index++) {
-                secondMassive[index] = 0 + (int) (Math.random() * (100 + 1));
-            }
         } else {
-            System.out.println("Fill the first massive:");
+            System.out.println("Fill the massive:");
             for (int index = 0; index < firstMassive.length; index++) {
                 System.out.print("Element [" + index + "]: ");
                 firstMassive[index] = in.nextInt();
             }
-            System.out.println("Fill the second massive:");
-            for (int index = 0; index < secondMassive.length; index++) {
-                System.out.print("Element [" + index + "]: ");
-                secondMassive[index] = in.nextInt();
-            }
         }
-        Arrays.sort(firstMassive);
-        Arrays.sort(secondMassive);
+        //    Arrays.sort(firstMassive);
+
         //  source massives output
         System.out.println("Source first massive: ");
         for (int index = 0; index < firstSize; index++) {
             System.out.print(firstMassive[index] + " ");
         }
         System.out.println();
-        System.out.println("Source second massive: ");
-        for (int index = 0; index < secondSize; index++) {
-            System.out.print(secondMassive[index] + " ");
-        }
-        System.out.println();
+
         // output by task condition
-        // extending old massive
-        firstMassive = Arrays.copyOf(firstMassive, firstMassive.length + secondMassive.length);
-        // filling new row
-        for (int index = firstSize, indexInSecondMassive = 0; index < firstMassive.length & indexInSecondMassive < secondMassive.length; index++, indexInSecondMassive++) {
-            firstMassive[index] = secondMassive[indexInSecondMassive];
-        }
+        int currentBiggestNumber = Integer.MIN_VALUE;
+        int tempValueSaver = 0;
+        int numberInMassiveSaver = 0;
         // sorting new row
-        Arrays.sort(firstMassive);
+        for (int indexOfMainWay = 0; indexOfMainWay < firstMassive.length; indexOfMainWay++) {
+            for (int indexOfSecondWay = indexOfMainWay; indexOfSecondWay < firstMassive.length; indexOfSecondWay++) {
+                if (firstMassive[indexOfSecondWay] > currentBiggestNumber) {
+                    currentBiggestNumber = firstMassive[indexOfSecondWay];
+                    numberInMassiveSaver = indexOfSecondWay;
+                }
+            }
+            tempValueSaver = firstMassive[indexOfMainWay];
+            firstMassive[indexOfMainWay] = currentBiggestNumber;
+            firstMassive[numberInMassiveSaver] = tempValueSaver;
+            currentBiggestNumber = Integer.MIN_VALUE;
+            tempValueSaver = 0;
+            numberInMassiveSaver = 0;
+        }
+
+        // Arrays.sort(firstMassive);
         System.out.println("New row: ");
         for (int index = 0; index < firstMassive.length; index++) {
             System.out.print(firstMassive[index] + " ");
