@@ -126,6 +126,23 @@ public class Algorithmization_launcher {
             case (33):
                 OneDimSorting_03.doTask();
                 break;
+            case (34):
+                OneDimSorting_04.doTask();
+                break;
+            case (35):
+                OneDimSorting_05.doTask();
+                break;
+            case (36):
+                OneDimSorting_06.doTask();
+                break;
+            case (37):
+                OneDimSorting_07.doTask();
+                break;
+            case (38):
+
+                OneDimSorting_08 task = new OneDimSorting_08();
+                task.doTask();
+                break;
             default:
                 System.out.println("No such task number.");
                 break;

@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author ArtSCactus
  */
-public class OneDimSorting_03 {
+public class OneDimSorting_06 {
 
     public static void doTask() {
         // declaration of massives/variables and it's initialization
@@ -24,8 +24,9 @@ public class OneDimSorting_03 {
                 break;
             } else if (firstSize < 0) {
                 System.out.println("The massive size cannot be less then 0!");
+            } else {
+                break;
             }
-            else break;
         }
         int[] firstMassive = new int[firstSize];
         System.out.println("0 - Auto filling\n1 - Manual filling");
@@ -49,7 +50,6 @@ public class OneDimSorting_03 {
                 firstMassive[index] = in.nextInt();
             }
         }
-        //    Arrays.sort(firstMassive);
 
         //  source massives output
         System.out.println("Source first massive: ");
@@ -57,32 +57,25 @@ public class OneDimSorting_03 {
             System.out.print(firstMassive[index] + " ");
         }
         System.out.println();
-
         // output by task condition
-        int currentBiggestNumber = Integer.MIN_VALUE;
-        int tempValueSaver = 0;
-        int numberInMassiveSaver = 0;
-        // sorting new row
-        for (int indexOfMainWay = 0; indexOfMainWay < firstMassive.length; indexOfMainWay++) {
-            for (int indexOfSecondWay = indexOfMainWay; indexOfSecondWay < firstMassive.length; indexOfSecondWay++) {
-                if (firstMassive[indexOfSecondWay] > currentBiggestNumber) {
-                    currentBiggestNumber = firstMassive[indexOfSecondWay];
-                    numberInMassiveSaver = indexOfSecondWay;
+        // sorting
+       int step, index, pairIndex, temp;
+        for (step = firstMassive.length / 2; step > 0; step /= 2) {     // pagination on steps 
+            for (index = step; index < firstMassive.length; index++) {              // number of pairs to check
+                for (pairIndex = 0; pairIndex < index; pairIndex++) {                //  checking each pair
+                    if (firstMassive[pairIndex] > firstMassive[index]) {           //  if the first number in the pair is greater than the second, then swap
+                        temp = firstMassive[pairIndex];
+                        firstMassive[pairIndex] = firstMassive[index];
+                        firstMassive[index] = temp;
+                    }
                 }
             }
-            tempValueSaver = firstMassive[indexOfMainWay];
-            firstMassive[indexOfMainWay] = currentBiggestNumber;
-            firstMassive[numberInMassiveSaver] = tempValueSaver;
-            currentBiggestNumber = Integer.MIN_VALUE;
-            tempValueSaver = 0;
-            numberInMassiveSaver = 0;
         }
-
-        // Arrays.sort(firstMassive);
         System.out.println("New row: ");
-        for (int index = 0; index < firstMassive.length; index++) {
+        for (index = 0; index < firstMassive.length; index++) {
             System.out.print(firstMassive[index] + " ");
         }
         System.out.println();
     }
 }
+

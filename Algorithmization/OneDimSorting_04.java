@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author ArtSCactus
  */
-public class OneDimSorting_03 {
+public class OneDimSorting_04 {
 
     public static void doTask() {
         // declaration of massives/variables and it's initialization
@@ -59,26 +59,20 @@ public class OneDimSorting_03 {
         System.out.println();
 
         // output by task condition
-        int currentBiggestNumber = Integer.MIN_VALUE;
         int tempValueSaver = 0;
-        int numberInMassiveSaver = 0;
+        boolean Sorted = false;
         // sorting new row
-        for (int indexOfMainWay = 0; indexOfMainWay < firstMassive.length; indexOfMainWay++) {
-            for (int indexOfSecondWay = indexOfMainWay; indexOfSecondWay < firstMassive.length; indexOfSecondWay++) {
-                if (firstMassive[indexOfSecondWay] > currentBiggestNumber) {
-                    currentBiggestNumber = firstMassive[indexOfSecondWay];
-                    numberInMassiveSaver = indexOfSecondWay;
+        while (Sorted != true) {
+            Sorted=true;
+            for (int indexOfMainWay = 0; indexOfMainWay < firstMassive.length - 1; indexOfMainWay++) {
+                if (firstMassive[indexOfMainWay] > firstMassive[indexOfMainWay + 1]) {
+                    Sorted = false;
+                    tempValueSaver = firstMassive[indexOfMainWay];
+                    firstMassive[indexOfMainWay] = firstMassive[indexOfMainWay + 1];
+                    firstMassive[indexOfMainWay + 1] = tempValueSaver;
                 }
             }
-            tempValueSaver = firstMassive[indexOfMainWay];
-            firstMassive[indexOfMainWay] = currentBiggestNumber;
-            firstMassive[numberInMassiveSaver] = tempValueSaver;
-            currentBiggestNumber = Integer.MIN_VALUE;
-            tempValueSaver = 0;
-            numberInMassiveSaver = 0;
         }
-
-        // Arrays.sort(firstMassive);
         System.out.println("New row: ");
         for (int index = 0; index < firstMassive.length; index++) {
             System.out.print(firstMassive[index] + " ");
