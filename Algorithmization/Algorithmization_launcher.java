@@ -139,10 +139,34 @@ public class Algorithmization_launcher {
                 OneDimSorting_07.doTask();
                 break;
             case (38):
-
                 OneDimSorting_08 task = new OneDimSorting_08();
                 task.doTask();
                 break;
+            case (41):
+                System.out.print("Enter number A: ");
+                int a=in.nextInt();
+                System.out.print("\n Enter number B: ");
+                int b=in.nextInt();
+                System.out.println("\nMethod output: "+Decomposition_01.doTask(a, b));
+                break;
+            case (42):
+                System.out.print("Enter number A: ");
+                 a=in.nextInt();
+                System.out.print("\n Enter number B: ");
+                 b=in.nextInt();
+                System.out.print("Enter number C: ");
+                 int c=in.nextInt();
+                System.out.print("\n Enter number D: ");
+                int d=in.nextInt();
+                System.out.println("\nMethod output: "+Decomposition_02.gcd(a,b,c,d));
+            case (43):
+                System.out.print("Enter side length of figure: ");
+                double sideLength=in.nextDouble();
+                System.out.println("\nMethod output: "+Decomposition_03.findSquare(sideLength));
+                break;
+            case (44):
+            Decomposition_04.launcherForMethod();
+            break;
             default:
                 System.out.println("No such task number.");
                 break;

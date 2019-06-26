@@ -17,8 +17,9 @@ public class OneDimSorting_04 {
         // declaration of massives/variables and it's initialization
         Scanner in = new Scanner(System.in);
         System.out.println("Enter massive size (enter 0 for random size between 1 and 100): ");
-        int firstSize = in.nextInt();
+        int firstSize;
         while (true) {
+            firstSize = in.nextInt();
             if (firstSize == 0) {
                 firstSize = 1 + (int) (Math.random() * (100 + 1));
                 break;

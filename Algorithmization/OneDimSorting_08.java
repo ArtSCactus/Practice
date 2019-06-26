@@ -5,7 +5,6 @@
  */
 package Practice.Algorithmization;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -19,14 +18,15 @@ public class OneDimSorting_08 {
         // declaration of massives/variables and it's initialization
         Scanner in = new Scanner(System.in);
         System.out.println("Enter amount fractions (enter 0 for random size between 1 and 100): ");
-        int amount = in.nextInt();
+        int amount;
         while (true) {
+           amount = in.nextInt();
             if (amount == 0) {
                 amount = 1 + (int) (Math.random() * (10 + 1));
                 break;
             } else if (amount < 0) {
                 System.out.println("The amount of fractions cannot be less then 0!");
-            }
+            } else break;
         }
         int[] numerator = new int[amount];
         int[] denominator = new int[amount];
@@ -90,8 +90,8 @@ public class OneDimSorting_08 {
      * @return
      */
     public static int findCommonDenominator(int[] array) {
-        int lcm = 1;
-        int factor = 2;
+         int lcm = 1;
+        int divider = 2;
         while (true) {
             int counter = 0;
             boolean divisible = false;
@@ -106,24 +106,24 @@ public class OneDimSorting_08 {
                     counter++;
                 }
 
-                // Divide array by devisor if complete 
-                // division index.e. without remainder then replace 
-                // number with quotient; used for find next factor 
-                if (array[index] % factor == 0) {
+                // Divide array by divider if complete 
+                // division index without remainder then replace 
+                // number with quotient; used for find next divider 
+                if (array[index] % divider == 0) {
                     divisible = true;
-                    array[index] = array[index] / factor;
+                    array[index] = array[index] / divider;
                 }
             }
 
-            // If factor able to completely divide any number 
+            // If divider able to completely divide any number 
             // from array multiply with lcm 
             // and store into lcm and continue 
-            // to same factor for next factor finding. 
-            // else increment factor 
+            // to same divider for next divider finding. 
+            // else increment divider 
             if (divisible) {
-                lcm = lcm * factor;
+                lcm = lcm * divider;
             } else {
-                factor++;
+                divider++;
             }
 
             // Check if all array is 1 indicate  
