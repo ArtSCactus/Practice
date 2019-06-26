@@ -8,7 +8,8 @@ package Practice.Algorithmization;
 import java.util.Scanner;
 
 /**
- * Task condition: 4. На плоскости заданы своими координатами n точек. Написать
+ * Task condition: 
+ * 4. На плоскости заданы своими координатами n точек. Написать
  * метод(методы), определяющие, между какими из пар точек самое большое
  * расстояние. Указание. Координаты точек занести в массив.
  *
@@ -53,10 +54,10 @@ public class Decomposition_04 {
         } else {
             System.out.println("Fill the coordinates:");
             for (int index = 0; index < coordinates.length; index += 2) {
-                System.out.print("X[" + pointCounter + "]: ");
-                coordinates[index] = in.nextInt();
-                System.out.print("\nY[" + pointCounter + "]: ");
-                coordinates[index + 1] = in.nextInt();
+                System.out.print("X[" + pointCounter + "](double): ");
+                coordinates[index] = in.nextDouble();
+                System.out.print("\nY[" + pointCounter + "](double): ");
+                coordinates[index + 1] = in.nextDouble();
                 pointCounter++;
             }
         }

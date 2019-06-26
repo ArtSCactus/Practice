@@ -144,29 +144,41 @@ public class Algorithmization_launcher {
                 break;
             case (41):
                 System.out.print("Enter number A: ");
-                int a=in.nextInt();
+                int a = in.nextInt();
                 System.out.print("\n Enter number B: ");
-                int b=in.nextInt();
-                System.out.println("\nMethod output: "+Decomposition_01.doTask(a, b));
+                int b = in.nextInt();
+                System.out.println("\nMethod output: " + Decomposition_01.doTask(a, b));
                 break;
             case (42):
                 System.out.print("Enter number A: ");
-                 a=in.nextInt();
+                a = in.nextInt();
                 System.out.print("\n Enter number B: ");
-                 b=in.nextInt();
+                b = in.nextInt();
                 System.out.print("Enter number C: ");
-                 int c=in.nextInt();
+                int c = in.nextInt();
                 System.out.print("\n Enter number D: ");
-                int d=in.nextInt();
-                System.out.println("\nMethod output: "+Decomposition_02.gcd(a,b,c,d));
+                int d = in.nextInt();
+                System.out.println("\nMethod output: " + Decomposition_02.gcd(a, b, c, d));
             case (43):
                 System.out.print("Enter side length of figure: ");
-                double sideLength=in.nextDouble();
-                System.out.println("\nMethod output: "+Decomposition_03.findSquare(sideLength));
+                double sideLength = in.nextDouble();
+                System.out.println("\nMethod output: " + Decomposition_03.findSquare(sideLength));
                 break;
             case (44):
-            Decomposition_04.launcherForMethod();
-            break;
+                Decomposition_04.launcherForMethod();
+                break;
+            case (45):
+                Decomposition_05.launcherForMethod();
+                break;
+            case (46):
+                Decomposition_06.methodLauncher();
+                break;
+            case (47):
+                System.out.println("Method output: "+Decomposition_07.findOddFactorials());
+                break;
+            case (48):
+                Decomposition_08.launcherForMethod();
+                break;
             default:
                 System.out.println("No such task number.");
                 break;
