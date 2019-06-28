@@ -182,6 +182,9 @@ public class Algorithmization_launcher {
             case (49):
                 Decomposition_09.methodLauncher();
                 break;
+            case (410):
+                Decomposition_10.methodLauncher();
+                break;
             default:
                 System.out.println("No such task number.");
                 break;
