@@ -22,6 +22,11 @@ public class Decomposition_10 {
         int number=in.nextInt();
         System.out.println("Numerals: "+Arrays.toString(splitOnNumerals(number)));
     }
+    /** Returns a numerals  of given number in a massive.
+     * 
+     * @param number
+     * @return 
+     */
     static int[] splitOnNumerals(int number) {
         int numeralsCounter = 0;
         int temp=number;
