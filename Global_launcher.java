@@ -7,6 +7,7 @@ package Practice;
 
 import Practice.Algorithmization.Algorithmization_launcher;
 import Practice.Basics.Basics_launcher;
+import Practice.StringsAndBasicsOfTextProcessing.StringsLauncher;
 import java.util.Scanner;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Scanner;
 public class Global_launcher {
 
     public static void main(String[] args) {
-        System.out.println("1-Basics of code development\n2-Algorithmization(work in progress)");
+        System.out.println("1-Basics of code development\n2-Algorithmization\n3-Strings and basics of text processing");
         System.out.println("Please, choose the unit: ");
         Scanner in = new Scanner(System.in);
         int unitNumber = in.nextInt();
@@ -26,6 +27,9 @@ public class Global_launcher {
                 break;
             case (2):
                 Algorithmization_launcher.launchAlgUnit();
+                break;
+            case (3):
+                StringsLauncher.launchStringsUnit();
                 break;
             default:
                 System.out.println("Sorry, but no such unit number.");

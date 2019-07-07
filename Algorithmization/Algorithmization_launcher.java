@@ -21,21 +21,7 @@ public class Algorithmization_launcher {
         System.out.println("4-Decomposition");
         System.out.println("5- Enter task number you want:");
         System.out.println("P.s. for example, 11 means One-dimension massive, task №1");
-        /* for (int index = 1; index < 11; index++) {
-            System.out.println("1" + index + "-№" + index);
-        }
-        System.out.println("Massives of massives(2):");
-        for (int index = 2; index < 12; index++) {
-            System.out.println("2" + index + "-№" + index);
-        }
-        System.out.println("Sortng(3):");
-        for (int index = 1; index < 9; index++) {
-            System.out.println("3" + index + "-№" + index);
-        }
-        System.out.println("Decomposition(4):");
-        for (int index = 1; index < 18; index++) {
-            System.out.println("4" + index + "-№" + index);
-        }*/
+        System.out.print("№");
         Scanner in = new Scanner(System.in);
         int taskNumber = in.nextInt();
         switch (taskNumber) {
@@ -174,7 +160,7 @@ public class Algorithmization_launcher {
                 Decomposition_06.methodLauncher();
                 break;
             case (47):
-                System.out.println("Method output: "+Decomposition_07.findOddFactorials());
+                System.out.println("Method output: " + Decomposition_07.findOddFactorials());
                 break;
             case (48):
                 Decomposition_08.launcherForMethod();
