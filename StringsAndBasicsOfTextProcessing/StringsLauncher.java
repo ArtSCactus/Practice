@@ -39,6 +39,15 @@ public class StringsLauncher {
             case (15):
                 StringAsMassive_5.methodLauncher();
                 break;
+            case (21):
+                StringAsObject_1.methodLauncher();
+                break;
+            case (22):
+                StringAsObject_2.methodLauncher();
+                break;
+            case (23):
+                StringAsObject_3.methodLauncher();
+                break;
             default:
                 System.out.println("No such task number.");
                 break;
