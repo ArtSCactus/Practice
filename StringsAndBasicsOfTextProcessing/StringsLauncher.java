@@ -60,6 +60,15 @@ public class StringsLauncher {
             case (27):
                 StringAsObject_7.methodLauncher();
                 break;
+            case (28):
+                StringAsObject_8.methodLauncher();
+                break;
+            case (29):
+                StringAsObject_9.methodLauncher();
+                break;
+            case (210):
+                StringAsObject_10.methodLauncher();
+                break;
             default:
                 System.out.println("No such task number.");
                 break;
