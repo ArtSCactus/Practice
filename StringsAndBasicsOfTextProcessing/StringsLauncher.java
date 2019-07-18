@@ -69,6 +69,9 @@ public class StringsLauncher {
             case (210):
                 StringAsObject_10.methodLauncher();
                 break;
+            case (31):
+                RegEx_1.launcher();
+                break;
             default:
                 System.out.println("No such task number.");
                 break;
