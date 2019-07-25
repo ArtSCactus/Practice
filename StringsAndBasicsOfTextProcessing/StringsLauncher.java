@@ -5,6 +5,7 @@
  */
 package Practice.StringsAndBasicsOfTextProcessing;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Scanner;
  */
 public class StringsLauncher {
     
-    public static void launchStringsUnit() {
+    public static void launchStringsUnit() throws IOException {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Task numbers:");
         System.out.println("1-Working with a string as an array of characters");
