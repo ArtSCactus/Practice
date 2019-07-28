@@ -24,13 +24,13 @@ public class Student {
     private int[] progress = new int[5];
 
     /**
-     * Constructs the inforamtion about student. If of the <code>String</code>
+     * Constructs the inforamtion about student. If one of the <code>String</code>
      * arguments are null, gerenating <code>IllegalArgumentException</code>. If
      * progress array (<code>progress</code>) length are bigger than 5 or equals
      * 0, then also generationg <code>IllegalArgumentException</code>. If
      * progress array (<code>progress</code>) length less than 5 and bigger than
-     * 0, the array is fills to the size of 5 elements. Added items are 0. If
-     * anyelement of progress array (<code>progress</code>) are bigger than 10
+     * 0, then the array fills to the size of 5 elements. Added items are 0. If
+     * any element of progress array (<code>progress</code>) are bigger than 10
      * or less than 0, then also generationg
      * <code>IllegalArgumentException</code>.
      *
@@ -166,8 +166,8 @@ public class Student {
         students.add(new Student("Петров Д.И.", "829453", new int[]{9, 9, 10}));
         students.add(new Student("Ивашенко В.П.", "Марсианская колония", new int[]{10, 10, 10, 10, 10}));
         students.add(new Student("Горбачёв М.С.", "193188", new int[]{9, 5, 10, 9, 9}));
-        students.add(new Student("Иванов С.А.", "750205", new int[]{9, 9, 10, 9, 9}));
-        students.add(new Student("Иванов С.А.", "750205", new int[]{9, 9, 10, 9, 4}));
+        students.add(new Student("Васильев В.В.", "890205", new int[]{9, 9, 10, 9, 9}));
+        students.add(new Student("Петроненко К.О.", "321205", new int[]{9, 9, 10, 9, 4}));
         for (Student student : students) {
             if (student.isExcellentStudent()) {
                 student.printNameAndGroup();
