@@ -186,6 +186,7 @@ public class Train {
     }
 
     /**
+     * Method to test how class Train works.
      *
      * @throws java.text.ParseException
      */

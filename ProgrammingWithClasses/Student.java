@@ -44,13 +44,13 @@ public class Student {
             throw new IllegalArgumentException();
         }
         if (progress.length > 5) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Progress array length more than 5: "+progress.length);
         } else {
             progress = Arrays.copyOf(progress, progress.length + (5 - progress.length));
         }
         for (int currentProgressForGrade : progress) {
             if (currentProgressForGrade > 10 || currentProgressForGrade < 0) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("One of the marks for grade are more than 10 or less than 0: "+currentProgressForGrade);
             }
         }
         this.surnameAndInitials = surnameAndInitials;
@@ -59,7 +59,7 @@ public class Student {
     }
 
     /**
-     * Returns progress array (<code>progress</code>).
+     * Returns progress array (<code>int[] progress</code>).
      *
      * @return
      */
@@ -83,7 +83,7 @@ public class Student {
     }
 
     /**
-     * Returns true if all marks of student (<code>progress</code>) are 9 or 10.
+     * Returns true if all marks of student (<code>int[] progress</code>) are 9 or 10.
      * Otherwise returns false.
      *
      * @return
@@ -98,7 +98,7 @@ public class Student {
     }
 
     /**
-     * Printing student name (<code>surnameAndInitials</code>) and student group
+     * Printing student name (<code>String surnameAndInitials</code>) and student group
      * (<code>group</code>) to console.
      *
      */
@@ -107,7 +107,7 @@ public class Student {
     }
 
     /**
-     * Returns student name (<code>surnameAndinitials</code>).
+     * Returns student name (<code>String surnameAndinitials</code>).
      *
      * @return
      */
@@ -116,7 +116,7 @@ public class Student {
     }
 
     /**
-     * Setting new value to student name (<code>surnameAndInitials</code>).
+     * Setting new value to student name (<code>String surnameAndInitials</code>).
      *
      * @param surnameAndInitials If this argument are null throws
      * IllegalArgumentException;
@@ -130,7 +130,7 @@ public class Student {
     }
 
     /**
-     * Returns student group (<code>group</code>).
+     * Returns student group (<code>String group</code>).
      *
      * @return
      */
@@ -139,7 +139,7 @@ public class Student {
     }
 
     /**
-     * Setting new value to student group (<code>group</code>).
+     * Setting new value to student group (<code>String group</code>).
      *
      * @param group If this argument are <tt>null</tt> throws
      * IllegalArgumentException;

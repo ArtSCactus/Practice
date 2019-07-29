@@ -5,6 +5,7 @@
  */
 package Practice.ProgrammingWithClasses;
 
+import Practice.ProgrammingWithClasses.Customer.CustomerBase;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Scanner;
@@ -20,6 +21,8 @@ public class ClassTestLauncher {
         System.out.println("1-Class Student (Unit programming with classes, task 3)");
         System.out.println("2-Class Train (Unit programming with classes, task 4)");
         System.out.println("3-Class DecCounter (Unit programming with classes, task 5)");
+        System.out.println("4-Class Time (Unit programming with classes, task 6)");
+        System.out.println("5-Class CustomerBase (Unit programming with classes, task 8)");
         System.out.print("№");
         Scanner in = new Scanner(System.in);
         int taskNumber = in.nextInt();
@@ -32,6 +35,12 @@ public class ClassTestLauncher {
                 break;
             case (3):
                 DecCounter.testClass();
+                break;
+            case (4):
+                Time.testClass();
+                break;
+            case (5):
+                CustomerBase.testClass();
                 break;
             default:
                 System.out.println("No such task number.");
