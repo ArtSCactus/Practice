@@ -10,6 +10,7 @@ import Practice.Basics.Basics_launcher;
 import Practice.ProgrammingWithClasses.ClassTestLauncher;
 import Practice.StringsAndBasicsOfTextProcessing.StringsLauncher;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 /**
@@ -18,7 +19,7 @@ import java.util.Scanner;
  */
 public class Global_launcher {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
         System.out.println("1-Basics of code development\n2-Algorithmization\n3-Strings and basics of text processing\n4-Programming with classes");
         System.out.println("Please, choose the unit: ");
         Scanner in = new Scanner(System.in);
@@ -34,7 +35,7 @@ public class Global_launcher {
                 StringsLauncher.launchStringsUnit();
                 break;
             case (4):
-                ClassTestLauncher.launchStringsUnit();
+                ClassTestLauncher.launchClassUnit();
                 break;
             default:
                 System.out.println("Sorry, but no such unit number.");

@@ -5,7 +5,11 @@
  */
 package Practice.ProgrammingWithClasses;
 
+import Practice.ProgrammingWithClasses.Airline.Airlines;
+import Practice.ProgrammingWithClasses.Book.Books;
+import Practice.ProgrammingWithClasses.Car.Car;
 import Practice.ProgrammingWithClasses.Customer.CustomerBase;
+import Practice.ProgrammingWithClasses.Text.Text;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Scanner;
@@ -15,7 +19,8 @@ import java.util.Scanner;
  * @author ArtSCactus
  */
 public class ClassTestLauncher {
-       public static void launchStringsUnit() throws IOException, ParseException {
+
+    public static void launchClassUnit() throws IOException, ParseException {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Task numbers:");
         System.out.println("1-Class Student (Unit programming with classes, task 3)");
@@ -23,6 +28,10 @@ public class ClassTestLauncher {
         System.out.println("3-Class DecCounter (Unit programming with classes, task 5)");
         System.out.println("4-Class Time (Unit programming with classes, task 6)");
         System.out.println("5-Class CustomerBase (Unit programming with classes, task 8)");
+        System.out.println("6-Class Books (Unit programming with classes, task 9)");
+        System.out.println("7-Class Airlines (Unit programming with classes, task 10)");
+        System.out.println("8-Class Text (Unit programming with classes, Aggregation and composition task 1)");
+        System.out.println("9-Class Text (Unit programming with classes, Aggregation and composition task 2)");
         System.out.print("№");
         Scanner in = new Scanner(System.in);
         int taskNumber = in.nextInt();
@@ -41,6 +50,18 @@ public class ClassTestLauncher {
                 break;
             case (5):
                 CustomerBase.testClass();
+                break;
+            case (6):
+                Books.testClass();
+                break;
+            case (7):
+                Airlines.testClass();
+                break;
+            case (8):
+                Text.testClass();
+                break;
+            case (9):
+                Car.testClass();
                 break;
             default:
                 System.out.println("No such task number.");
