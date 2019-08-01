@@ -95,7 +95,7 @@ public class Car {
             throw new IllegalArgumentException("No such wheel number");
         }
         wheels[wheelNumber] = wheel;
-        System.out.println("Wheel replaced successfull");
+        System.out.println("Wheel successfully replaced");
     }
 
     public void printCarMark() {
