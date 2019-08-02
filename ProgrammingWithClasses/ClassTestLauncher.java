@@ -12,7 +12,7 @@ import Practice.ProgrammingWithClasses.Car.Car;
 import Practice.ProgrammingWithClasses.Customer.CustomerBase;
 import Practice.ProgrammingWithClasses.State.State;
 import Practice.ProgrammingWithClasses.Text.Text;
-import Practice.ProgrammingWithClasses.Vouchers.VacationCollector;
+import Practice.ProgrammingWithClasses.Vacations.VacationCollector;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Scanner;
