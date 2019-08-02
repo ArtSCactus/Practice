@@ -14,7 +14,7 @@ package Practice.ProgrammingWithClasses.Vouchers;
  *
  * @author ArtSCactus
  */
-public class Voucher {
+public class Vacation {
 
     private String voucherType;
     private String transportType;
@@ -22,7 +22,15 @@ public class Voucher {
     private int amountOfDays;
     private String country;
 
-    public Voucher(String country, String voucherType, String transportType, String nutritionType, int amountOfDays) {
+    /**
+     *
+     * @param country
+     * @param voucherType
+     * @param transportType
+     * @param nutritionType
+     * @param amountOfDays
+     */
+    public Vacation(String country, String voucherType, String transportType, String nutritionType, int amountOfDays) {
         if (amountOfDays < 0) {
             throw new IllegalArgumentException("Amount of days cannot be less than 0");
         }
@@ -36,10 +44,18 @@ public class Voucher {
         this.amountOfDays = amountOfDays;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCountry() {
         return country;
     }
 
+    /**
+     *
+     * @param country
+     */
     public void setCountry(String country) {
                 if (country == null) {
             throw new NullPointerException("country cannot be null");
@@ -47,10 +63,18 @@ public class Voucher {
         this.country = country;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getVoucherType() {
         return voucherType;
     }
 
+    /**
+     *
+     * @param voucherType
+     */
     public void setVoucherType(String voucherType) {
         if (voucherType == null) {
             throw new NullPointerException("voucher type cannot be null");
@@ -58,10 +82,18 @@ public class Voucher {
         this.voucherType = voucherType;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTransportType() {
         return transportType;
     }
 
+    /**
+     *
+     * @param transportType
+     */
     public void setTransportType(String transportType) {
         if (transportType == null) {
             throw new NullPointerException("Transport type cannot be null");
@@ -69,10 +101,18 @@ public class Voucher {
         this.transportType = transportType;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNutritionType() {
         return nutritionType;
     }
 
+    /**
+     *
+     * @param nutritionType
+     */
     public void setNutritionType(String nutritionType) {
         if (nutritionType == null) {
             throw new NullPointerException("Nutrition type cannot be null");
@@ -80,10 +120,18 @@ public class Voucher {
         this.nutritionType = nutritionType;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAmountOfDays() {
         return amountOfDays;
     }
 
+    /**
+     *
+     * @param amountOFDays
+     */
     public void setAmountOfDays(int amountOFDays) {
         if (amountOfDays < 0) {
             throw new IllegalArgumentException("amount of days cannot be less than 0");
@@ -93,7 +141,7 @@ public class Voucher {
 
     @Override
     public String toString() {
-        return "Voucher to country: "+ country  + "\nVoucher type: " + voucherType + "\n Transport type: " + transportType + "Nutrition type: " + nutritionType + "Amount Of days: " + amountOfDays;
+        return "Vacation to country: "+ country  + "\nVacation type: " + voucherType + "\nTransport type: " + transportType + "\nNutrition type: " + nutritionType + "\nAmount Of days: " + amountOfDays;
     }
 
 }

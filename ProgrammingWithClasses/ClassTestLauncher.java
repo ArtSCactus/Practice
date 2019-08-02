@@ -12,6 +12,7 @@ import Practice.ProgrammingWithClasses.Car.Car;
 import Practice.ProgrammingWithClasses.Customer.CustomerBase;
 import Practice.ProgrammingWithClasses.State.State;
 import Practice.ProgrammingWithClasses.Text.Text;
+import Practice.ProgrammingWithClasses.Vouchers.VacationCollector;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Scanner;
@@ -34,7 +35,9 @@ public class ClassTestLauncher {
         System.out.println("7-Class Airlines (Unit programming with classes, task 10)");
         System.out.println("8-Class Text (Unit programming with classes, Aggregation and composition task 1)");
         System.out.println("9-Class Car (Unit programming with classes, Aggregation and composition task 2)");
-                System.out.println("10-Class State (Unit programming with classes, Aggregation and composition task 3)");
+        System.out.println("10-Class State (Unit programming with classes, Aggregation and composition task 3)");
+        System.out.println("11-Class Bank (Unit programming with classes, Aggregation and composition task 4)");
+        System.out.println("12-Class VacationsCollector (Unit programming with classes, Aggregation and composition task 5)");
         System.out.print("№");
         Scanner in = new Scanner(System.in);
         int taskNumber = in.nextInt();
@@ -71,6 +74,9 @@ public class ClassTestLauncher {
                 break;
             case (11):
                 Bank.testClass();
+                break;
+            case (12):
+                VacationCollector.testClass();
                 break;
             default:
                 System.out.println("No such task number.");
