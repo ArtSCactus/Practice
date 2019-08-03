@@ -16,7 +16,7 @@ package Practice.ProgrammingWithClasses.Vacations;
  */
 public class Vacation {
 
-    private String voucherType;
+    private String vacationType;
     private String transportType;
     private String nutritionType;
     private int amountOfDays;
@@ -25,20 +25,20 @@ public class Vacation {
     /**
      *
      * @param country
-     * @param voucherType
+     * @param vacationType
      * @param transportType
      * @param nutritionType
      * @param amountOfDays
      */
-    public Vacation(String country, String voucherType, String transportType, String nutritionType, int amountOfDays) {
+    public Vacation(String country, String vacationType, String transportType, String nutritionType, int amountOfDays) {
         if (amountOfDays < 0) {
             throw new IllegalArgumentException("Amount of days cannot be less than 0");
         }
-        if (voucherType == null | transportType == null | nutritionType == null | country==null) {
-            throw new NullPointerException("voucherType or transportType or String nutritionType or country cannot be null");
+        if (vacationType == null | transportType == null | nutritionType == null | country==null) {
+            throw new NullPointerException("vacationType or transportType or String nutritionType or country cannot be null");
         }
         this.country=country;
-        this.voucherType = voucherType;
+        this.vacationType = vacationType;
         this.transportType = transportType;
         this.nutritionType = nutritionType;
         this.amountOfDays = amountOfDays;
@@ -67,19 +67,19 @@ public class Vacation {
      *
      * @return
      */
-    public String getVoucherType() {
-        return voucherType;
+    public String getVacationType() {
+        return vacationType;
     }
 
     /**
      *
-     * @param voucherType
+     * @param vacationType
      */
-    public void setVoucherType(String voucherType) {
-        if (voucherType == null) {
-            throw new NullPointerException("voucher type cannot be null");
+    public void setVacationType(String vacationType) {
+        if (vacationType == null) {
+            throw new NullPointerException("vacation type cannot be null");
         }
-        this.voucherType = voucherType;
+        this.vacationType = vacationType;
     }
 
     /**
@@ -141,7 +141,7 @@ public class Vacation {
 
     @Override
     public String toString() {
-        return "Vacation to country: "+ country  + "\nVacation type: " + voucherType + "\nTransport type: " + transportType + "\nNutrition type: " + nutritionType + "\nAmount Of days: " + amountOfDays;
+        return "Vacation to country: "+ country  + "\nVacation type: " + vacationType + "\nTransport type: " + transportType + "\nNutrition type: " + nutritionType + "\nAmount Of days: " + amountOfDays;
     }
 
 }
