@@ -163,9 +163,10 @@ public class Payment {
      * @param name
      */
     public void deletePurchase(String name) {
-        for (int index = 0; index < purchaseList.size();) {
+        for (int index = 0; index < purchaseList.size(); index++) {
             if (purchaseList.get(index).getName().equalsIgnoreCase(name)) {
                 purchaseList.remove(index);
+                index--;
             }
         }
     }
