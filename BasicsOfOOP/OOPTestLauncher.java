@@ -8,8 +8,6 @@ package Practice.BasicsOfOOP;
 import Practice.BasicsOfOOP.Dragon_and_his_treasures.Menu;
 import Practice.BasicsOfOOP.Presents.Present;
 import Practice.BasicsOfOOP.Task_1.Directory;
-import Practice.BasicsOfOOP.Task_2.Payment;
-import Practice.BasicsOfOOP.Task_2.Payment.Purchase;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -18,10 +16,13 @@ import java.util.Scanner;
  * @author ArtSCactus
  */
 public class OOPTestLauncher {
-    public static void launchOOPTests() throws IOException{
-           System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+    public static void launchOOPTests() throws IOException {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Task numbers:");
         System.out.println("1-Class TextFile and Directory (Unit Basics of OOP, task 1)");
+        System.out.println("2-Dragon and his treasure project");
+        System.out.println("3-Class Present (Unit Basics of OOP, task 5)");
         System.out.print("№");
         Scanner in = new Scanner(System.in);
         int taskNumber = in.nextInt();
