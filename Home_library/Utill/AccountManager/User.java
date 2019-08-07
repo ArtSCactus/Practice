@@ -31,7 +31,15 @@ public class User {
      *
      */
     private boolean admin = false;
+    /**
+     * Contains id of current user. Must be unique.
+     *
+     */
     private int id;
+    /**
+     * Contains mailbox of current user.
+     *
+     */
     private Mailbox mailbox;
 
     /**
@@ -50,18 +58,36 @@ public class User {
         this.password = password;
         this.admin = admin;
         id = ThreadLocalRandom.current().nextInt(1000000, 10000000);
-        mailbox=new Mailbox(id);
+        mailbox = new Mailbox(id);
 
     }
-        public User(String userName, String password,int id, Mailbox mailbox, boolean admin) {
-        if (userName == null) {
-            throw new NullPointerException("User name cannot be null");
+
+    /**
+     * Constructs user with given characeristics. Used to restore existing user.
+     *
+     *
+     * @param userName
+     * @param password
+     * @param id
+     * @param mailbox
+     * @param admin
+     * @throws NullPointerException if userName or password are null
+     * @throws IllegalArgumentException if id less than 1 000 000 or bigger than
+     * 10 000 000
+     */
+    public User(String userName, String password, int id, Mailbox mailbox, boolean admin) {
+        if (userName == null | password == null) {
+            throw new NullPointerException("User name or password cannot be null");
         }
+        if (id < 1000000 | id > 10000000) {
+            throw new IllegalArgumentException("Wrong id number");
+        }
+
         this.userName = userName;
         this.password = password;
         this.admin = admin;
         this.id = id;
-        this.mailbox=mailbox;
+        this.mailbox = mailbox;
 
     }
 
@@ -81,44 +107,118 @@ public class User {
         }
     }
 
+    /**
+     * Returns user name.
+     *
+     * @return
+     */
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    /**
+     * Settings new name to the current user.
+     *
+     * @param userName
+     */
+    public void setUserName(String userName) throws NullPointerException {
+        if (userName == null) {
+            throw new NullPointerException("User name cannot be null");
+        }
         this.userName = userName;
     }
 
+    /**
+     * Returns user password to check on matches.
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    /**
+     * Settings new password to the current user.
+     *
+     * @param userName
+     */
+    public void setPassword(String password) throws NullPointerException {
+        if (password == null) {
+            throw new NullPointerException("User name cannot be null");
+        }
         this.password = password;
     }
 
+    /**
+     * Returns true if current user are admin. False otherwise.
+     *
+     * @return true/false
+     */
     public boolean isAdmin() {
         return admin;
     }
 
+    /**
+     * Returns id of current user.
+     *
+     * @return
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Generats new user id from. This is number from 1 000 000 to 10 000 000.
+     *
+     */
     public void generateId() {
         id = ThreadLocalRandom.current().nextInt(1000000, 10000000);
     }
 
-    public void setId(int id) {
+    /**
+     * Settings new user id.
+     *
+     * @param id
+     * @throws IllegalArgumentException if id less than 1 000 000 or bigger than
+     * 10 000 000
+     */
+    public void setId(int id) throws IllegalArgumentException {
+        if (id < 1000000 | id > 10000000) {
+            throw new IllegalArgumentException("Wrong id number");
+        }
         this.id = id;
     }
-    public void sendMessage(String message) throws IOException{
+
+    /**
+     * Sending message to the current user.
+     *
+     * @param message
+     * @throws IOException
+     * @throws NullPointerException if message are null
+     */
+    public void sendMessage(String message) throws IOException {
+        if (message == null) {
+            throw new NullPointerException("Message cannot be null");
+        }
         mailbox.acceptMassage(message);
     }
-    public List<String> showMailBox() throws IOException{
+
+    /**
+     * Returns messages from mailbox as List.
+     *
+     * @return
+     * @throws IOException
+     */
+    public List<String> showMailBox() throws IOException {
         return mailbox.getEmails();
     }
-    public void clearMailBox() throws IOException{
+
+    /**
+     * Clears mailbox of current user.
+     *
+     * @throws IOException
+     */
+    public void clearMailBox() throws IOException {
         mailbox.clearMailbox();
     }
 }

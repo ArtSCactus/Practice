@@ -20,11 +20,31 @@ import java.util.Scanner;
  */
 public class Menu {
 
+    /**
+     * Contains Library class object, which stores books and editing
+     * Book_storage.txt file.
+     *
+     */
     private Library library;
+    /**
+     * Contains AccountManager class object, that consist all accounts list,
+     * logs into accounts and various actions with themю
+     *
+     */
     private AccountManager accounts;
-    private Scanner scanner = new Scanner(System.in);
+    /**
+     * Scanner to read user input.
+     *
+     */
+    private final Scanner scanner = new Scanner(System.in);
 
-    public void logInMenu() throws IOException {
+    /**
+     * Initializing library and account manager with authorized user. Consist
+     * user interface, with log in function.
+     *
+     * @throws IOException
+     */
+    private void logInMenu() throws IOException {
         library = new Library();
         accounts = new AccountManager();
         System.out.println("Hello! Who are you?");
@@ -40,7 +60,7 @@ public class Menu {
         }
         switch (choice) {
             case (1):
-
+                //Sign up interface
                 String userName;
                 String password;
                 while (true) {
@@ -84,8 +104,13 @@ public class Menu {
 
     }
 
+    /**
+     * Consists main menu interface, that runs different functions, like request
+     * book or add book.
+     *
+     * @throws IOException
+     */
     public void mainMenu() throws IOException {
-        System.setProperty("console.encoding", "Cp866");
         System.out.println("~~~~~~~~Main menu~~~~~~~~");
         if (library.getRightsStatus()) {
             System.out.println("1-Show books\n2-Find book\n3-Request book\n4-Email"
@@ -94,10 +119,10 @@ public class Menu {
             System.out.println("1-Show books\n2-Find book\n3-Request book\n4-Email"
                     + "\n7-exit");
         }
-        int choice;
-        String bookName = "";
-        String bookAuthor = "";
-        Book book;
+        int choice; //Command number indicator
+        String bookName; //Consist inputed book name
+        String bookAuthor;//Consist inputed book author
+        Book book; //Consist founded book
         while (true) {
             choice = scanner.nextInt();
             if (choice < 1 | choice > 7) {
@@ -108,10 +133,12 @@ public class Menu {
         }
         switch (choice) {
             case (1):
+                //Print books
                 System.out.flush();
-                library.printByPage(10);
+                library.printByPage(10);// 10 here is amount of books on page
                 break;
             case (2):
+                //Find book
                 System.out.flush();
                 System.out.print("Enter a book name: ");
                 bookName = scanner.nextLine();
@@ -124,8 +151,10 @@ public class Menu {
                 } catch (NullPointerException ex) {
                     System.out.println("No match found");
                 }
+                System.out.flush();
                 break;
             case (3):
+                //Request book 
                 System.out.flush();
                 System.out.print("Enter a book name: ");
                 bookName = scanner.nextLine();
@@ -137,15 +166,20 @@ public class Menu {
                 if (scanner.hasNextLine()) {
                     bookAuthor = scanner.nextLine();
                 }
+                //Sending admins request, from current user to add book.
                 accounts.sendAdmins("New request to add new book from user "
                         + library.getUserName() + " ID: " + library.getUserId()
                         + " Book: " + bookAuthor + " " + bookName);
                 break;
             case (4):
                 System.out.flush();
+                //Runs mailbox interface
                 accounts.showMailbox();
                 break;
             case (5):
+                /*
+                Checks the rights of the current user in case of unauthorized access to administrator commands.
+                 */
                 if (!library.getRightsStatus()) {
                     break;
                 }
@@ -169,6 +203,9 @@ public class Menu {
                 accounts.sendUser("New book has been added: " + book.getAuthor() + " " + book.getName());
                 break;
             case (6):
+                /* Delete book
+                Checks the rights of the current user in case of unauthorized access to administrator commands.
+                 */
                 if (!library.getRightsStatus()) {
                     break;
                 }
@@ -204,10 +241,18 @@ public class Menu {
                 break;
             case (7):
                 System.exit(0);
+            default:
+                System.out.println("Wrong command number");
+                break;
         }
 
     }
 
+    /**
+     * Constructs all user interface and runs console application.
+     *
+     * @throws IOException
+     */
     public void run() throws IOException {
         logInMenu();
         while (true) {

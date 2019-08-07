@@ -19,10 +19,20 @@ import java.util.List;
  * @author ArtSCactus
  */
 public class Mailbox {
-
+    /**Contains file with user's mailbox.
+     * 
+     */ 
     private File mailbox;
+    /**Contains id of this mailbox owner.
+     * 
+     */
     private int userId;
-
+/**Constructs mailbox object with given file and id.
+ * 
+ * @param mailbox
+ * @param userId 
+ * @throws NullPointerException if mailbox are null.
+ */
     public Mailbox(File mailbox, int userId) {
         if (mailbox == null) {
             throw new NullPointerException("Mailbox cannot be null");
@@ -30,13 +40,21 @@ public class Mailbox {
         this.mailbox = mailbox;
         this.userId = userId;
     }
-
+/**Creating new mailbox with given id.
+ * 
+ * @param userId
+ * @throws IOException 
+ */
     public Mailbox(int userId) throws IOException {
         this.userId = userId;
         mailbox = new File("src\\Practice\\Home_library\\EmailSystem\\Emails\\" + userId + ".txt");
         mailbox.createNewFile();
     }
-
+/**Prints to console file(mailbox) content(messages).
+ * 
+ * @throws FileNotFoundException
+ * @throws IOException 
+ */
     public void showNewMessages() throws FileNotFoundException, IOException {
         FileReader fromFile = new FileReader(mailbox);
         BufferedReader scanner = new BufferedReader(fromFile);
@@ -53,17 +71,29 @@ public class Mailbox {
         toFile.write("");
         toFile.close();
     }
-
+/**Adds new message to the end of file (the mailbox).
+ * 
+ * @param message
+ * @throws IOException 
+ */
     public void acceptMassage(String message) throws IOException {
         FileWriter toFile = new FileWriter(mailbox, true);
         toFile.append(message+"\n");
         toFile.close();
     }
-
+/**Returns id of this mailbox(owner's id).
+ * 
+ * @return 
+ */
     public int getId() {
         return userId;
     }
-
+/**Returns file(mailbox) content as List.
+ * 
+ * @return <code>List<String>=new ArrayList<>();</code>
+ * @throws FileNotFoundException
+ * @throws IOException 
+ */
     public List<String> getEmails() throws FileNotFoundException, IOException {
         FileReader fromFile = new FileReader(mailbox);
         BufferedReader scanner = new BufferedReader(fromFile);
@@ -73,12 +103,12 @@ public class Mailbox {
         }
         return messages;
     }
+    /**Clears file(mailbox).
+     * 
+     * @throws IOException 
+     */
     public void clearMailbox() throws IOException{
         FileWriter clearFile = new FileWriter(mailbox);
         clearFile.close();
-    }
-
-    public void toCnsole() {
-        System.out.println("Mailbox of user " + userId);
     }
 }

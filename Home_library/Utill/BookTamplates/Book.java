@@ -10,34 +10,46 @@ package Practice.Home_library.Utill.BookTamplates;
  * @author ArtSCactus
  */
 public interface Book {
-    /**Should return author's name of current book.
-     * 
-     * @return 
+
+    /**
+     * Should return author's name of current book.
+     *
+     * @return
      */
     public String getAuthor();
-    /**Should allows to set new value to the authors name.
-     * 
+
+    /**
+     * Should allows to set new value to the authors name.
+     *
      * @param author
      */
     public void setAuthor(String author);
-    /**Should returns book name.
-     * 
-     * @return 
+
+    /**
+     * Should returns book name.
+     *
+     * @return
      */
     public String getName();
-    /**Should allows to set new value to the book name.
-     * 
+
+    /**
+     * Should allows to set new value to the book name.
+     *
      * @param name
      */
     public void setName(String name);
-    /**Should return "digital" or "paper".
-     * 
-     * @return 
+
+    /**
+     * Should return "digital" or "paper".
+     *
+     * @return
      */
     public String bookType();
-    /**Should return in row all information about current book.
-     * 
-     * @return 
+
+    /**
+     * Should return in row all information about current book.
+     *
+     * @return
      */
     @Override
     public String toString();

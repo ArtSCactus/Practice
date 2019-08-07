@@ -79,18 +79,25 @@ public class Digital implements Book {
         }
         this.name = name;
     }
-    /**Returns row "digital" to show which type is this book.
-     * 
+
+    /**
+     * Returns row "digital" to show which type is this book.
+     *
      * @return "digital"
      */
     @Override
-    public String bookType(){
+    public String bookType() {
         return "digital";
     }
 
+    /**
+     * Returns information about current book in one <code>String</code> row.
+     *
+     * @return
+     */
     @Override
     public String toString() {
-        return "Book: "+name+"\nAuthor: "+author+"\nEdition: digital";
+        return "Book: " + name + "\nAuthor: " + author + "\nEdition: digital";
     }
-    
+
 }

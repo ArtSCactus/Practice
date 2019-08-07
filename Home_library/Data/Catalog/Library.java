@@ -161,7 +161,7 @@ public class Library {
         }
         boolean success = false;
         for (int index = 0; index < bookList.size(); index++) {
-            if (bookList.get(index).getName().equals(bookName)& bookList.get(index).getAuthor().equalsIgnoreCase(bookAuthor) & bookList.get(index).bookType().equals(bookType)) {
+            if (bookList.get(index).getName().equals(bookName) & bookList.get(index).getAuthor().equalsIgnoreCase(bookAuthor) & bookList.get(index).bookType().equals(bookType)) {
                 bookList.remove(index);
                 index--;
                 success = true;
@@ -207,19 +207,34 @@ public class Library {
             }
         }
     }
-
+/**Prints to console information (by calling <code>toString()</code> method) for each book.
+ * 
+ */
     public void printAllBooks() {
         for (Book book : bookList) {
             System.out.println(book.toString());
+            System.out.flush();
         }
     }
 
-    public void printByPage(int rowsOnPage) throws IOException {
-        if (bookList.size()==0) {System.out.println("No any book in library at this moment");return;}
+    /**
+     * Calculates amount of pages by given amount of notes on page. Then asking
+     * user on which page he want's to go. After that calculates page start and
+     * page end and prints all books between calculated borders.
+     *
+     *
+     * @param notesOnPage
+     * @throws IOException
+     */
+    public void printByPage(int notesOnPage) throws IOException {
+        if (bookList.size() == 0) {
+            System.out.println("No any book in library at this moment");
+            return;
+        }
         int rowsCounter = 0;
         int amountOfPages = 0;
         for (int index = 0; index < bookList.size(); index++) {
-            if (rowsCounter == rowsOnPage - 1) {
+            if (rowsCounter == notesOnPage - 1) {
                 amountOfPages++;
                 rowsCounter = 0;
             } else {
@@ -229,21 +244,21 @@ public class Library {
         if (rowsCounter > 0) {
             amountOfPages++;
         }
-        System.out.println(amountOfPages + " pages available, which one will you choose?");
+        System.out.println(amountOfPages + " pages available, which one will you choose?(Starts from 0)");
         int pageNumber = 0;
         Scanner scan = new Scanner(System.in);
         while (true) {
             pageNumber = scan.nextInt();
             if (pageNumber < 0 | pageNumber > amountOfPages) {
-                System.out.print("Please, choose between 0 and " + amountOfPages);
+                System.out.print("Please, choose between 0 and " + (amountOfPages - 1));
             } else {
                 break;
             }
         }
         int currentPageStart = 0;
         int currentPageEnd = 0;
-        currentPageStart += rowsOnPage * pageNumber;
-        currentPageEnd += pageNumber == 0 ? rowsOnPage : rowsOnPage * pageNumber;
+        currentPageStart += notesOnPage * pageNumber;
+        currentPageEnd += pageNumber == 0 ? notesOnPage : notesOnPage * pageNumber;
         if (currentPageEnd > bookList.size()) {
             currentPageEnd = bookList.size();
         }

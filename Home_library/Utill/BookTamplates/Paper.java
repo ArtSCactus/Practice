@@ -89,7 +89,11 @@ public class Paper implements Book {
     public String bookType() {
         return "paper";
     }
-
+    /**
+     * Returns information about current book in one <code>String</code> row.
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Book: "+name+"\nAuthor: "+author+"\nEdition: paper";
