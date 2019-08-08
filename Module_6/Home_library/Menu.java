@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Practice.Home_library;
+package Practice.Module_6.Home_library;
 
-import Practice.Home_library.Data.Catalog.Library;
-import Practice.Home_library.Utill.AccountManager.AccountManager;
-import Practice.Home_library.Utill.AccountManager.User;
 import Practice.Home_library.Utill.BookTamplates.Book;
 import Practice.Home_library.Utill.BookTamplates.Digital;
 import Practice.Home_library.Utill.BookTamplates.Paper;
+import Practice.Module_6.Home_library.Utill.AccountManager.AccountManager;
+import Practice.Module_6.Home_library.Data.Catalog.Library;
+import Practice.Module_6.Home_library.Utill.AccountManager.User;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -44,9 +44,9 @@ public class Menu {
      *
      * @throws IOException
      */
-    private void logInMenu() throws IOException {
-        library = new Library();
-        accounts = new AccountManager();
+    private void logInMenu(String bookStoragePath, String emailStoragePath, String accountStoragePath) throws IOException {
+        library = new Library(bookStoragePath);
+        accounts = new AccountManager(emailStoragePath, accountStoragePath);
         System.out.println("Hello! Who are you?");
         System.out.println("1-sign in\n2-sign up");
         int choice;
@@ -113,10 +113,18 @@ public class Menu {
     public void mainMenu() throws IOException {
         System.out.println("~~~~~~~~Main menu~~~~~~~~");
         if (library.getRightsStatus()) {
-            System.out.println("1-Show books\n2-Find book\n3-Request book\n4-Email"
-                    + "\n5-add book\n6-delete book\n7-exit");
+            System.out.println("1-Show books"
+                    + "\n2-Find book"
+                    + "\n3-Request book"
+                    + "\n4-Email"
+                    + "\n5-add book"
+                    + "\n6-delete book"
+                    + "\n7-exit");
         } else {
-            System.out.println("1-Show books\n2-Find book\n3-Request book\n4-Email"
+            System.out.println("1-Show books"
+                    + "\n2-Find book"
+                    + "\n3-Request book"
+                    + "\n4-Email"
                     + "\n7-exit");
         }
         int choice; //Command number indicator
@@ -251,10 +259,13 @@ public class Menu {
     /**
      * Constructs all user interface and runs console application.
      *
+     * @param bookStoragePath
+     * @param emailStoragePath
+     * @param accountStoragePath
      * @throws IOException
      */
-    public void run() throws IOException {
-        logInMenu();
+    public void run(String bookStoragePath, String emailStoragePath, String accountStoragePath) throws IOException {
+        logInMenu(bookStoragePath, emailStoragePath, accountStoragePath);
         while (true) {
             mainMenu();
         }

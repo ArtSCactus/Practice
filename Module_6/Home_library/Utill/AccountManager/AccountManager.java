@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Practice.Home_library.Utill.AccountManager;
+package Practice.Module_6.Home_library.Utill.AccountManager;
 
-import Practice.Home_library.EmailSystem.EmailSystem;
+import Practice.Module_6.Home_library.EmailSystem.EmailSystem;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -77,10 +77,10 @@ public class AccountManager {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public AccountManager() throws FileNotFoundException, IOException {
-        emails = new EmailSystem();
-        userDataBase = new File("src\\Practice\\Home_library\\Utill\\AccountManager\\Users\\Account storage.txt");
-        confidentionalInformation = new File("src\\Practice\\Home_library\\Utill\\AccountManager\\Users\\Stash.hl");
+    public AccountManager(String emailStoragePath, String accountStoragePath) throws FileNotFoundException, IOException {
+        emails = new EmailSystem(emailStoragePath);
+        userDataBase = new File(accountStoragePath+"\\Users\\Account storage.txt");
+        confidentionalInformation = new File(accountStoragePath+"\\Users\\Stash.hl");
         if (!confidentionalInformation.exists()) {
             confidentionalInformation.createNewFile();
         }

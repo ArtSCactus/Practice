@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Practice.Home_library.EmailSystem;
+package Practice.Module_6.Home_library.EmailSystem;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,9 +29,9 @@ public class EmailSystem {
 /**Constructs email system, initializing list and connects files(mailboxes).
  * 
  */
-    public EmailSystem() {
+    public EmailSystem(String emailStoragePath) {
         mailboxes = new ArrayList<>();
-        File mailDir = new File("src\\Practice\\Home_library\\EmailSystem\\Emails");
+        File mailDir = new File(emailStoragePath+"\\Emails");
         if (!mailDir.mkdir()) mailDir.mkdir();
         for (File item : mailDir.listFiles()) {
             mailboxes.add(new Mailbox(item, Integer.parseInt(item.getName().replaceAll(".txt", ""))));

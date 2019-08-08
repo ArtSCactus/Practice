@@ -12,7 +12,7 @@ package Practice;
 public class SplitOnNumbersAlgorithm {
       /**
      * Returns a massive of elements, that in summ will give number.
-     * numberOfItems - number of times, that you need get, after number dividing
+     * numberOfItems - number of items, that you need get, after number dividing
      *
      * @param number;
      * @param numberOfItems;

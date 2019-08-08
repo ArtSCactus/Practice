@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Practice.Home_library.Data.Catalog;
+package Practice.Module_6.Home_library.Data.Catalog;
 
-import Practice.Home_library.Utill.AccountManager.User;
 import Practice.Home_library.Utill.BookTamplates.Book;
 import Practice.Home_library.Utill.BookTamplates.Digital;
 import Practice.Home_library.Utill.BookTamplates.Paper;
+import Practice.Module_6.Home_library.Utill.AccountManager.User;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,9 +33,9 @@ public class Library {
     private User currentUser;
     private boolean isAdminAuthorized;
 
-    public Library() throws FileNotFoundException, IOException {
+    public Library(String bookStoragePath) throws FileNotFoundException, IOException {
         bookList = new ArrayList<>();
-        bookStorage = new File("src\\Practice\\Home_library\\Data\\Book_storage.txt");
+        bookStorage = new File(bookStoragePath+"\\Book storage.txt");
         if (bookStorage.exists()) {
             String[] buffer = new String[3];
             fromFile = new FileReader(bookStorage);

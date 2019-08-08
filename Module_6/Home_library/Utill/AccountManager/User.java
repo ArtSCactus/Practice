@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Practice.Home_library.Utill.AccountManager;
+package Practice.Module_6.Home_library.Utill.AccountManager;
 
-import Practice.Home_library.EmailSystem.Mailbox;
+import Practice.Module_6.Home_library.EmailSystem.Mailbox;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
