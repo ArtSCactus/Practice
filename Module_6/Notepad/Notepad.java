@@ -415,7 +415,7 @@ public class Notepad {
                     }
                 }
                 List<Note> foundedNotes = findNoteByDate(date);
-                if (foundedNotes.size() == 0) {
+                if (foundedNotes.isEmpty()) {
                     System.out.println("No match found");
                 } else {
                     System.out.println("Founded notes: ");
@@ -439,7 +439,7 @@ public class Notepad {
                     }
                 }
                 foundedNotes = findNoteByEmail(email);
-                if (foundedNotes.size() == 0) {
+                if (foundedNotes.isEmpty()) {
                     System.out.println("No match found");
                 } else {
                     System.out.println("Founded notes: ");
@@ -452,7 +452,7 @@ public class Notepad {
                 System.out.print("Enter topic: ");
                 String topic = scanner.nextLine();
                 foundedNotes = findNoteByTopic(topic);
-                if (foundedNotes.size() == 0) {
+                if (foundedNotes.isEmpty()) {
                     System.out.println("No match found");
                 } else {
                     System.out.println("Founded notes: ");
@@ -465,7 +465,7 @@ public class Notepad {
                 System.out.print("Enter message: ");
                 String message = scanner.nextLine();
                 foundedNotes = findNoteByMessage(message);
-                if (foundedNotes.size() == 0) {
+                if (foundedNotes.isEmpty()) {
                     System.out.println("No match found");
                 } else {
                     System.out.println("Founded notes: ");
@@ -489,7 +489,7 @@ public class Notepad {
                 System.out.print("Enter topic: ");
                 topic = scanner.nextLine();
                 foundedNotes = findNote(date, topic);
-                if (foundedNotes.size() == 0) {
+                if (foundedNotes.isEmpty()) {
                     System.out.println("No match found");
                 } else {
                     System.out.println("Founded notes: ");
@@ -514,7 +514,7 @@ public class Notepad {
                 System.out.print("Enter topic: ");
                 topic = scanner.nextLine();
                 foundedNotes = findNote(topic, email);
-                if (foundedNotes.size() == 0) {
+                if (foundedNotes.isEmpty()) {
                     System.out.println("No match found");
                 } else {
                     System.out.println("Founded notes: ");
