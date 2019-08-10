@@ -8,6 +8,7 @@ package Practice;
 import Practice.Algorithmization.Algorithmization_launcher;
 import Practice.Basics.Basics_launcher;
 import Practice.BasicsOfOOP.OOPTestLauncher;
+import Practice.Module_6.Harbor.Harbor;
 import Practice.Module_6.Home_library.Menu;
 import Practice.Module_6.Notepad.Notepad;
 import Practice.ProgrammingWithClasses.ClassTestLauncher;
@@ -23,14 +24,15 @@ import java.util.Scanner;
  */
 public class Global_launcher {
 
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) throws IOException, ParseException, InterruptedException {
         System.out.println("1-Basics of code development"
                 + "\n2-Algorithmization"
                 + "\n3-Strings and basics of text processing"
                 + "\n4-Programming with classes"
                 + "\n5-Basics of OOP"
                 + "\n6-Home library project"
-                + "\n7-Notepad project");
+                + "\n7-Notepad project"
+                + "\n8-Harbor project");
         System.out.println("Please, choose the unit: ");
         Scanner in = new Scanner(System.in);
         int unitNumber = in.nextInt();
@@ -60,6 +62,10 @@ public class Global_launcher {
             case (7):
                 Notepad notepad = new Notepad(new File("src\\Practice\\Module_6\\Notepad\\Notepad.txt"));
                 notepad.run();
+                break;
+            case (8):
+                        Harbor harbor = new Harbor(1000, 1);
+                harbor.testClass();
                 break;
             default:
                 System.out.println("Sorry, but no such unit number.");

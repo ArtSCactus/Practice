@@ -25,17 +25,58 @@ import java.util.Scanner;
  */
 public class Library {
 
+    /**
+     * Needs to store books, that was loaded from file.
+     *
+     */
     private List<Book> bookList;
+    /**
+     * Needs to store file that sonsist books list.
+     *
+     */
     private File bookStorage;
+    /**
+     * Needs to load book list from file.
+     *
+     */
     private FileReader fromFile;
+    /**
+     * Needs to save book list to the file.
+     *
+     */
     private FileWriter toFile;
+    /**
+     * Used to read files.
+     *
+     */
     private BufferedReader scanner;
+    /**
+     * Contains current authorized user.
+     *
+     */
     private User currentUser;
+    /**
+     * Consist rights status of current user.
+     *
+     */
     private boolean isAdminAuthorized;
 
+    /**
+     * Constructs library exemplar with file by given path. If by this path is
+     * no such file, it will be created.
+     *
+     *
+     * @param bookStoragePath
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws NullPointerException if bookStoragePath are null
+     */
     public Library(String bookStoragePath) throws FileNotFoundException, IOException {
+        if (bookStoragePath == null) {
+            throw new NullPointerException("Book storage path cannot be null");
+        }
         bookList = new ArrayList<>();
-        bookStorage = new File(bookStoragePath+"\\Book storage.txt");
+        bookStorage = new File(bookStoragePath + "\\Book storage.txt");
         if (bookStorage.exists()) {
             String[] buffer = new String[3];
             fromFile = new FileReader(bookStorage);
@@ -207,9 +248,12 @@ public class Library {
             }
         }
     }
-/**Prints to console information (by calling <code>toString()</code> method) for each book.
- * 
- */
+
+    /**
+     * Prints to console information (by calling <code>toString()</code> method)
+     * for each book.
+     *
+     */
     public void printAllBooks() {
         for (Book book : bookList) {
             System.out.println(book.toString());
