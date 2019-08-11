@@ -165,7 +165,7 @@ public class Ship extends Thread {
                 }
             };
         } else {
-            //Returns same object, but with overrided tun() method,that will unload the ship
+            //Returns same object, but with overrided run() method,that will unload the ship
             return new Ship(ship.name, ship.trafficControl, ship.capacity, ship.containers) {
                 @Override
                 public void run() {
