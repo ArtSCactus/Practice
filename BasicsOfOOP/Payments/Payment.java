@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Practice.BasicsOfOOP.Task_2;
+package Practice.BasicsOfOOP.Payments;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,13 +23,22 @@ public class Payment {
      *
      */
     public class Purchase {
-
+/**Stores price of current purchase.
+ * 
+ */
         private int price;
+        /**Stores name of current purchase.
+         * 
+         */
         private String name;
+        /**Stores amount of current purhcases.
+         * 
+         */
         private int amount;
 
         /**
-         *
+         *Constructs new purchase.
+         * 
          * @param name
          * @param price
          * @param amount
@@ -46,16 +55,19 @@ public class Payment {
         }
 
         /**
-         *
-         * @return
+         *Returns amount of this purchases.
+         * 
+         * @return amount of this purhcases
          */
         public int getAmount() {
             return amount;
         }
 
         /**
-         *
-         * @param amount
+         *Settings new amount of this purchase.
+         * 
+         * @param amount of this purchase
+         * @throws IllegalArgumentException if amount less than 0
          */
         public void setAmount(int amount) {
             if (amount < 0) {
@@ -65,16 +77,19 @@ public class Payment {
         }
 
         /**
-         *
-         * @return
+         *Returns pirce of 1 current purchase.
+         * 
+         * @return price of 1 purchase
          */
         public int getPrice() {
             return price;
         }
 
         /**
-         *
+         *Settings new purchase price.
+         * 
          * @param price
+         * @throws IllegalAgumentException if price less than 0
          */
         public void setPrice(int price) {
             if (price < 0) {
@@ -84,16 +99,19 @@ public class Payment {
         }
 
         /**
-         *
-         * @return
+         *Returns name of this purchase.
+         * 
+         * @return name
          */
         public String getName() {
             return name;
         }
 
         /**
-         *
+         *Settings new name to this purhcase.
+         * 
          * @param name
+         * @throws NullPointerException if name are null
          */
         public void setName(String name) {
             if (name == null) {
@@ -101,7 +119,10 @@ public class Payment {
             }
             this.name = name;
         }
-
+/**Returns information about current purhcase as String row.
+ * 
+ * @return 
+ */
         @Override
         public String toString() {
             return "Purchase[" + "price=" + price + ", name=" + name + ", amount=" + amount + ']';
@@ -110,8 +131,10 @@ public class Payment {
     }
 
     /**
-     *
+     *Constructs new payments with purchases.
+     * 
      * @param purchases
+     * @throws NullPointerException if atleast one of purchase are null
      */
     public Payment(Purchase... purchases) {
         if (purchases == null) {
@@ -122,32 +145,41 @@ public class Payment {
     }
 
     /**
-     *
+     *Constructs empty payment
      */
     public Payment() {
         purchaseList = new ArrayList<>();
     }
 
     /**
-     *
-     * @param name
-     * @param price
-     * @param amount
+     *Allows to add new purchase to the current payment.
+     * 
+     * @param name of this purchase
+     * @param price price for 1 pruchase
+     * @param amount amount of this purchases
+     * @throws NullPointerException if name are null
+     * @throws IllegalArgumentException if price or amount are less than 0.
      */
     public void addPurchase(String name, int price, int amount) {
+        if (name==null) throw new NullPointerException("Name cannot be null");
+        if (price<0 | amount<0) throw new IllegalArgumentException("Price or amount cannot be less than 0");
         purchaseList.add(new Purchase(name, price, amount));
     }
 
     /**
-     *
+     * Allows to add object of Purchase class to current payment.
+     * 
      * @param purchase
+     * @throws NullPointerException if purchase are null
      */
     public void addPurchase(Purchase purchase) {
+        if  (purchase==null) throw new NullPointerException("Purchase cannot be null");
         purchaseList.add(purchase);
     }
 
     /**
-     *
+     *Counts price of current payment by pirce and amount of purchases.
+     * 
      * @return
      */
     public int countPrice() {
@@ -159,10 +191,13 @@ public class Payment {
     }
 
     /**
-     *
+     *Deletes all purchase by given name.
+     * 
      * @param name
+     * @throws NullPointerException if name are null
      */
     public void deletePurchase(String name) {
+        if (name==null) throw new NullPointerException("Name cannot be null");
         for (int index = 0; index < purchaseList.size(); index++) {
             if (purchaseList.get(index).getName().equalsIgnoreCase(name)) {
                 purchaseList.remove(index);
@@ -172,10 +207,12 @@ public class Payment {
     }
 
     /**
-     *
+     *Deletes all purchases by given price for 1 item.
      * @param price
+     * @throws IllegalArgumentException if price are less than 0
      */
     public void deletePurchase(int price) {
+        if (price<0) throw new IllegalArgumentException("Price cannot be less than 0");
         for (int index = 0; index < purchaseList.size();) {
             if (purchaseList.get(index).getPrice() == price) {
                 purchaseList.remove(index);
@@ -184,7 +221,8 @@ public class Payment {
     }
 
     /**
-     *
+     *Clears current purhcases list.
+     * 
      */
     public void clearList() {
         purchaseList.clear();

@@ -36,9 +36,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * Server class for Archive project
- * Общие требования к заданию: 
- * • В архиве
+ * Server class for Archive project Общие требования к заданию: • В архиве
  * хранятся Дела (например, студентов). Архив находится на сервере. • Клиент, в
  * зависимости от прав, может запросить дело на просмотр, внести в него
  * изменения, или создать новое дело. Требования к коду лабораторной работы: •
@@ -50,12 +48,40 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class ArchiveServer {
 
+    /**
+     * Object input stream to get custom objects like Student from client.
+     *
+     */
     private ObjectInputStream inObj;
+    /**
+     * Object output stream to send custom objects like Student to client.
+     *
+     */
     private ObjectOutputStream outObj;
+    /**
+     * List to store students.
+     *
+     */
     private List<Student> students = new ArrayList<>();
+    /**
+     * List to store accounts.
+     *
+     */
     private List<Account> accounts = new ArrayList<>();
+    /**
+     * To store path to the file with account storage.
+     *
+     */
     private String accountStoragePath;
+    /**
+     * To store path to the file with students storage.
+     *
+     */
     private String studentsStoragePath;
+    /**
+     * Current authorized user.
+     *
+     */
     private Account currentUser;
 
     private Socket clientSocket; // socket for client
@@ -63,6 +89,18 @@ public class ArchiveServer {
     private BufferedReader in; // text thread from client
     private BufferedWriter out; // text thread to client
 
+    /**
+     * Constructs server with files by given path. If by this path are no file
+     * (files) such files will be created. Also loads from this files accounts
+     * and students. WARNING: file must be with .xml extension!
+     *
+     * @param accountStoragePath - path to xml file that will store accounts
+     * @param studentsStoragePath - path to xml file that will store students
+     * @throws IOException
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws NullPointerException if one of the file path are null
+     */
     public ArchiveServer(String accountStoragePath, String studentsStoragePath) throws IOException, SAXException, ParserConfigurationException {
         if (accountStoragePath == null | studentsStoragePath == null) {
             throw new NullPointerException("Path cannot be null");
@@ -81,6 +119,15 @@ public class ArchiveServer {
         loadDataBase();
     }
 
+    /**
+     * Consist SAX parser. Loads accounts from file to the list. If by
+     * accountsStoragePath no such file, it will be created.
+     *
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     */
     private void loadAccounts() throws FileNotFoundException, IOException, SAXException, ParserConfigurationException {
         File accountStorage = new File(studentsStoragePath);
         if (!accountStorage.exists()) {
@@ -128,6 +175,16 @@ public class ArchiveServer {
         saxParser.parse(accountStoragePath, defaultHandler);
     }
 
+    /**
+     * Rewrites account list to the file. Needs to save current list of
+     * accounts.
+     *
+     * @throws SAXException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws TransformerConfigurationException
+     * @throws TransformerException
+     */
     private void saveAccounts() throws SAXException, IOException, ParserConfigurationException, TransformerConfigurationException, TransformerException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -161,6 +218,14 @@ public class ArchiveServer {
         transformer.transform(domSource, streamResult);
     }
 
+    /**
+     * Loads students from xml file by SAX parser. If by studentsStoragePath no
+     * such file, it will be created.
+     *
+     * @throws SAXException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     */
     private void loadDataBase() throws SAXException, IOException, ParserConfigurationException {
         File studentsStorage = new File(studentsStoragePath);
         if (!studentsStorage.exists()) {
@@ -207,11 +272,21 @@ public class ArchiveServer {
         saxParser.parse(studentsStoragePath, defaultHandler);
     }
 
+    /**
+     * Rewrites current students list to the file by students storage path. If
+     * by this path no such file, it will be created.
+     *
+     * @throws TransformerException
+     * @throws IOException
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     */
     public void saveStudents() throws TransformerException, IOException, SAXException, ParserConfigurationException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         Document document = documentBuilder.parse(studentsStoragePath);
         Node root = document.getElementsByTagName("students").item(0);
+        //Clearing current students list.
         if (root == null) {
             root = document.createElement("students");
         }
@@ -239,6 +314,15 @@ public class ArchiveServer {
         transformer.transform(domSource, streamResult);
     }
 
+    /**
+     * Compares given login and password to accounts in list. If it matches
+     * settings to currentUser account that matched and returns true. Returns
+     * false otherwise.
+     *
+     * @param login
+     * @param password
+     * @return true if matched, false otherwise
+     */
     private boolean signIn(String login, String password) {
         for (Account account : accounts) {
             if (account.logIn(login, password)) {
@@ -249,6 +333,17 @@ public class ArchiveServer {
         return false;
     }
 
+    /**
+     * Adds new student to the list. After adding new student calls method
+     * <code>saveStudents()</code>.
+     *
+     * @param student
+     * @throws IOException
+     * @throws TransformerException
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws NullPointerException if student are null.
+     */
     public void addStudent(Student student) throws IOException, TransformerException, SAXException, ParserConfigurationException {
         if (currentUser.getRightsStatus()) {
             if (student == null) {
@@ -260,6 +355,19 @@ public class ArchiveServer {
         }
     }
 
+    /**
+     * Adds new account to the list. By given login and password will be created
+     * new Account object (new account). By default this account will be usual
+     * user (not admin). After adding calls method <code>saveAccounts()</code>
+     *
+     * @param login of new user
+     * @param password of new user
+     * @throws IOException
+     * @throws TransformerException
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws NullPointerException if login or password are null
+     */
     public void addAccount(String login, String password) throws IOException, TransformerException, SAXException, ParserConfigurationException {
         if (login == null | password == null) {
             throw new NullPointerException("Login or password cannot be null");
@@ -269,6 +377,16 @@ public class ArchiveServer {
         System.out.println("New account has been registred");
     }
 
+    /**
+     * Adds new account (finished object) to the list. Calls method
+     * <code>saveAccounts()</code>
+     *
+     * @param user
+     * @throws IOException
+     * @throws TransformerException
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     */
     public void addAccount(Account user) throws IOException, TransformerException, SAXException, ParserConfigurationException {
         if (user == null) {
             throw new NullPointerException("Account cannot be null");
@@ -278,7 +396,18 @@ public class ArchiveServer {
         System.out.println("New account has been registred");
     }
 
+    /**
+     * Returns student from students list by given name. Will be returned only
+     * first met student with such name.
+     *
+     * @param studentName
+     * @return Student object
+     * @throws NullPointerException if studentName are null
+     */
     public Student findStudent(String studentName) {
+        if (studentName == null) {
+            throw new NullPointerException("Student name cannot be null");
+        }
         for (Student student : students) {
             if (student.getName().equalsIgnoreCase(studentName)) {
                 return student;
@@ -287,6 +416,11 @@ public class ArchiveServer {
         return null;
     }
 
+    /**
+     * Returns true if server have authorized user. False otherwise.
+     *
+     * @return true/false
+     */
     public boolean isAuthorized() {
         if (currentUser == null) {
             return false;
@@ -295,14 +429,27 @@ public class ArchiveServer {
         }
     }
 
+    /**
+     * Runs the server.
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws TransformerException
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     */
     public void run() throws IOException, ClassNotFoundException, TransformerException, SAXException, ParserConfigurationException {
         try {
             try {
-                loadDataBase();
+                // loadDataBase(); temporary disable this method here, because it possibly cause some problems.
+                // possible this method is unnessesary here.
                 server = new ServerSocket(4004);
                 System.out.println("Server successfully started");
+                System.out.println("Waiting for client");
                 clientSocket = server.accept();
+                System.out.println("New user just connected: " + clientSocket.getInetAddress().toString());
                 try {
+                    //Initializing streams for current client.
                     in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                     out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
                     String login;
@@ -362,9 +509,6 @@ public class ArchiveServer {
                                     }
                                     out.write("Got you, will be adding new student. I'm waiting for student object" + "\n");
                                     out.flush();
-                                    // outObj= new ObjectOutputStream(clientSocket.getOutputStream());
-                                    //outObj.writeObject(students.get(0));
-                                    //outObj.flush();
                                     inObj = new ObjectInputStream(clientSocket.getInputStream());
                                     addStudent((Student) inObj.readObject());
                                     out.write("Successfully added" + "\n");
@@ -383,10 +527,13 @@ public class ArchiveServer {
                                     String studentName = word;
                                     out.write("Ok, his name " + word + ", i'll search such student." + "\n");
                                     out.flush();
+                                    //Sengind founded student and remembering it's index
                                     outObj = new ObjectOutputStream(clientSocket.getOutputStream());
                                     int indexSaver = getStudentIndexInList(findStudent(studentName));
                                     outObj.writeObject(findStudent(studentName));
                                     outObj.flush();
+                                    //Receiving student object and remembering where it was in list, to replace it 
+                                    //for changed student.
                                     inObj = new ObjectInputStream(clientSocket.getInputStream());
                                     Student changedStudent = (Student) inObj.readObject();
                                     students.set(indexSaver, changedStudent);
@@ -420,7 +567,17 @@ public class ArchiveServer {
         }
     }
 
+    /**
+     * Finds given student in a student list and returns it's index in this
+     * list. If such student wasn't found will be returned -1.
+     *
+     * @param student
+     * @return index or -1
+     */
     public int getStudentIndexInList(Student student) {
+        if (student == null) {
+            throw new NullPointerException("Student cannot be null");
+        }
         boolean targetFound = false;
         for (int index = 0; index < students.size(); index++) {
             if (student.getName().equals(students.get(index).getName())) {

@@ -7,7 +7,7 @@ package Practice.BasicsOfOOP;
 
 import Practice.BasicsOfOOP.Dragon_and_his_treasures.Menu;
 import Practice.BasicsOfOOP.Presents.Present;
-import Practice.BasicsOfOOP.Task_1.Directory;
+import Practice.BasicsOfOOP.Text_file.Directory;
 import java.io.IOException;
 import java.util.Scanner;
 
