@@ -6,7 +6,10 @@
 package Practice.Basics;
 
 /**
- *
+ *Task condition:
+ * 2. Вычислить значения функции на отрезке [а,b] c шагом h:
+ * y=x if x>2
+ * y=-x if x<=2
  * @author ArtSCactus
  */
 public class Task3_2 {

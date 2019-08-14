@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Basics_launcher {
 
     public static void launchBasicsUnit() {
-                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Input task number (example: 21 means part 2 task 1): ");
         Scanner in = new Scanner(System.in);
         int taskNumber = in.nextInt();
@@ -154,31 +154,33 @@ public class Basics_launcher {
                 break;
             case (35):
                 System.out.println("Input e (double)");
-                var1=in.nextDouble();
+                var1 = in.nextDouble();
                 System.out.println("Input row start (int)");
-                a=in.nextInt();
+                a = in.nextInt();
                 System.out.println("Input row end (int)");
                 b = in.nextInt();
-                System.out.println(Task3_5.task3_5(var1,a,b));
+                System.out.println(Task3_5.task3_5(var1, a, b));
                 break;
             case (36):
                 System.out.println("Input symbol: ");
-                  Object symbol =in.next();
-                  System.out.println("Hash code: "+Task3_6.task3_6(symbol));
+                in.nextLine();
+                String symbol = in.nextLine();
+                System.out.println("Hash code: " + Task3_6.task3_6_hash(symbol));
+                Task3_6.task3_6(symbol);
                 break;
             case (37):
                 System.out.println("Input start number (int): ");
-                a=in.nextInt();
+                a = in.nextInt();
                 System.out.println("Input end number (int): ");
-                b=in.nextInt();
-                Task3_7.task3_7(a,b);
+                b = in.nextInt();
+                Task3_7.task3_7(a, b);
             case (38):
                 System.out.println("Input first number (int): ");
-               a=in.nextInt();
-                               System.out.println("Input second number(int): ");
-               b=in.nextInt();
-               Task3_8.task3_8(a, b);
-               break;
+                a = in.nextInt();
+                System.out.println("Input second number(int): ");
+                b = in.nextInt();
+                Task3_8.task3_8(a, b);
+                break;
             default:
                 System.out.println("No such task number");
                 break;

@@ -6,7 +6,8 @@
 package Practice.Basics;
 
 /**
- *
+ *Task condition:
+ * 3. Найти сумму квадратов первых ста чисел.
  * @author ArtSCactus
  */
 public class Task3_3 {

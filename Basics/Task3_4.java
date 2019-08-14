@@ -8,7 +8,8 @@ package Practice.Basics;
 import java.math.BigInteger;
 
 /**
- *
+ *Task condition:
+ * 4. Составить программу нахождения произведения квадратов первых двухсот чисел.
  * @author ArtSCactus
  */
 public class Task3_4 {
