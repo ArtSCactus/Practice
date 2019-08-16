@@ -16,6 +16,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -347,7 +348,7 @@ public class ArchiveServer {
     public void addStudent(Student student) throws IOException, TransformerException, SAXException, ParserConfigurationException {
         if (currentUser.getRightsStatus()) {
             if (student == null) {
-                throw new NullPointerException();
+                throw new NullPointerException("Student cannot be null");
             }
             students.add(student);
             saveStudents();
@@ -487,6 +488,9 @@ public class ArchiveServer {
                                     out.flush();
                                     break;
                                 case ("get student"):
+                                    if (!isAuthorized()) {
+                                        break;
+                                    }
                                     out.write("Got you, will be searching the student. I'm waiting for student name." + "\n");
                                     out.flush();
                                     word = in.readLine();
@@ -502,7 +506,7 @@ public class ArchiveServer {
                                     }
                                     break;
                                 case ("add student"):
-                                    if (!currentUser.getRightsStatus()) {
+                                    if (!currentUser.getRightsStatus() | !isAuthorized()) {
                                         out.write("Access denied");
                                         out.flush();
                                         break;
@@ -511,11 +515,12 @@ public class ArchiveServer {
                                     out.flush();
                                     inObj = new ObjectInputStream(clientSocket.getInputStream());
                                     addStudent((Student) inObj.readObject());
+                                    inObj.close();
                                     out.write("Successfully added" + "\n");
                                     out.flush();
                                     break;
                                 case ("change student"):
-                                    if (!currentUser.getRightsStatus()) {
+                                    if (!currentUser.getRightsStatus() | !isAuthorized()) {
                                         out.write("Access denied" + "\n");
                                         out.flush();
                                         break;
@@ -537,6 +542,8 @@ public class ArchiveServer {
                                     inObj = new ObjectInputStream(clientSocket.getInputStream());
                                     Student changedStudent = (Student) inObj.readObject();
                                     students.set(indexSaver, changedStudent);
+                                    inObj.close();
+                                    outObj.close();
                                     saveStudents();
                                     out.write("Successfully changed" + "\n");
                                     out.flush();
@@ -552,11 +559,9 @@ public class ArchiveServer {
                         System.out.println("Client has cutted down the connection.");
                     }
                 } finally {
-                    clientSocket.close();
                     in.close();
                     out.close();
-                    inObj.close();
-                    outObj.close();
+                    clientSocket.close();
                 }
             } finally {
                 System.out.println("Server has been closed");
@@ -578,12 +583,12 @@ public class ArchiveServer {
         if (student == null) {
             throw new NullPointerException("Student cannot be null");
         }
-        boolean targetFound = false;
+        boolean targetFound;
         for (int index = 0; index < students.size(); index++) {
             if (student.getName().equals(students.get(index).getName())) {
                 targetFound = true;
                 for (int markIndex = 0; markIndex < students.get(index).getAverageMarks().size(); markIndex++) {
-                    if (student.getAverageMarks().get(markIndex) == students.get(index).getAverageMarks().get(markIndex)) {
+                    if (Objects.equals(student.getAverageMarks().get(markIndex), students.get(index).getAverageMarks().get(markIndex))) {
                         targetFound = true;
                     } else {
                         targetFound = false;
