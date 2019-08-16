@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
+ * Task condition: 3. Дан массив действительных чисел, размерность которого N. Подсчитать, сколько в нем отрицательных,
+положительных и нулевых элементов.
  *
  * @author ArtSCactus
  */
@@ -23,7 +25,7 @@ public class OneDim_03 {
         int zeroCounter = 0;
         System.out.println("Input massive elements: ");
         for (int index = 0; index < massive.length; index++) {
-                        System.out.print("Element ["+index+"](double): ");
+            System.out.print("Element [" + index + "](double): ");
             massive[index] = in.nextDouble();
             if (massive[index] > 0) {
                 posCounter++;

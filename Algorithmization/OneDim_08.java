@@ -9,6 +9,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
+ * Task condition: 8. Дана последовательность целых чисел a1,a2,...,an.
+ * Образовать новую последовательность, выбросив из исходной те члены, которые
+ * равны min( a1,a2,...,an).
  *
  * @author ArtSCactus
  */
@@ -27,7 +30,7 @@ public class OneDim_08 {
         System.out.println("Source massive: " + Arrays.toString(numbers));
         // search for min element
         int minElement = numbers[0];
-        int counterOfMinElements =1;
+        int counterOfMinElements = 1;
         for (int index = 0; index < numbers.length; index++) {
             if (numbers[index] < minElement) {
                 minElement = numbers[index];

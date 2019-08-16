@@ -8,7 +8,10 @@ package Practice.Algorithmization;
 import java.util.Scanner;
 
 /**
- *
+ *Task condition:
+ * 7. Сформировать квадратную матрицу порядка N по правилу:
+ * A[I,J]=sin((I^2-J^2)/N)
+ * и подсчитать количество положительных элементов в ней.
  * @author ArtSCactus
  */
 public class MassiveOfMassives_07 {

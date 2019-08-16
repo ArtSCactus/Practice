@@ -8,7 +8,9 @@ package Practice.Algorithmization;
 import java.util.Scanner;
 
 /**
- *
+ *Task condition:
+ * 14. Сформировать случайную матрицу m x n, состоящую из нулей и единиц, причем в каждом столбце число
+единиц равно номеру столбца.
  * @author ArtSCactus
  */
 public class MassiveOfMassives_14 {

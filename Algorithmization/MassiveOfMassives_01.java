@@ -8,7 +8,8 @@ package Practice.Algorithmization;
 import java.util.Scanner;
 
 /**
- *
+ *Task condition:
+ * 1. Дана матрица. Вывести на экран все нечетные столбцы, у которых первый элемент больше последнего.
  * @author ArtSCactus
  */
 public class MassiveOfMassives_01 {

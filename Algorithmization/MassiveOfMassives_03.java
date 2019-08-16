@@ -8,7 +8,8 @@ package Practice.Algorithmization;
 import java.util.Scanner;
 
 /**
- *
+ *Task condition:
+ * 3. Дана матрица. Вывести k-ю строку и p-й столбец матрицы.
  * @author ArtSCactus
  */
 public class MassiveOfMassives_03 {

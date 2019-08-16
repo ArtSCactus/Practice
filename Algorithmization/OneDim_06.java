@@ -8,6 +8,8 @@ package Practice.Algorithmization;
 import java.util.Scanner;
 
 /**
+ * Task condition: 6. Задана последовательность N вещественных чисел. Вычислить сумму чисел, порядковые номера которых
+являются простыми числами.
  *
  * @author ArtSCactus
  */
@@ -25,7 +27,7 @@ public class OneDim_06 {
             numbers[index] = in.nextDouble();
             for (int divider = 1; divider < index + 1; divider++) {              // 
                 onlyTwoDividers = true;                                                //
-                if (index % divider == 0 & divider > 1 & divider < index)    //
+                if (index % divider == 0 & divider > 1 & divider < index) //
                 {                                                                                  //
                     onlyTwoDividers = false;                                           // Check for compliance with the condition
                     break;                                                                    //

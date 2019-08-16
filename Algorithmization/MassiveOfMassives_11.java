@@ -6,6 +6,9 @@
 package Practice.Algorithmization;
 
 /**
+ * Task condition: 11. Матрицу 10x20 заполнить случайными числами от 0 до 15.
+ * Вывести на экран саму матрицу и номера строк, в которых число 5 встречается
+ * три и более раз.
  *
  * @author ArtSCactus
  */
@@ -23,7 +26,7 @@ public class MassiveOfMassives_11 {
         //  source matrix output
         System.out.println("Source matrix: ");
         for (int indexY = 0; indexY < 20; indexY++) {
-                        System.out.print("Row №"+indexY+" ");
+            System.out.print("Row №" + indexY + " ");
             for (int indexX = 0; indexX < 10; indexX++) {
                 System.out.print(matrix[indexX][indexY] + " ");
             }
@@ -32,13 +35,13 @@ public class MassiveOfMassives_11 {
         // output by task condition
         System.out.print("Number of rows, that consist number 5 three and more times: ");
         for (int indexY = 0; indexY < 20; indexY++) {
-            fiveCounter=0;
+            fiveCounter = 0;
             for (int indexX = 0; indexX < 10; indexX++) {
                 if (matrix[indexX][indexY] == 5) {
                     fiveCounter++;
                 }
                 if (fiveCounter == 3) {
-                    System.out.print(indexY+ ",  ");
+                    System.out.print(indexY + ",  ");
                     fiveCounter = 0;
                     break;
                 }

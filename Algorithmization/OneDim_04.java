@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
+ * Task condition:4. Даны действительные числа а1 ,а2 ,..., аn . Поменять
+ * местами наибольший и наименьший элементы.
  *
  * @author ArtSCactus
  */
@@ -20,7 +22,7 @@ public class OneDim_04 {
         double[] massive = new double[in.nextInt()];
         System.out.println("Input massive elements: ");
         for (int index = 0; index < massive.length; index++) {
-                                    System.out.print("Element ["+index+"](double): ");
+            System.out.print("Element [" + index + "](double): ");
             massive[index] = in.nextDouble();
         }
         double theSmallest = massive[0];

@@ -8,12 +8,15 @@ package Practice.Algorithmization;
 import java.util.Scanner;
 
 /**
+ * Task condition: 13. Отсотрировать стобцы матрицы по возрастанию и убыванию
+ * значений эементов.
  *
  * @author ArtSCactus
  */
 public class MassiveOfMassives_13 {
-    public static void doTask(){
-         // declaration of massive/variables and it's initialization
+
+    public static void doTask() {
+        // declaration of massive/variables and it's initialization
         Scanner in = new Scanner(System.in);
         System.out.println("Enter matrix size by X: ");
         int sideSize = in.nextInt();
@@ -62,7 +65,7 @@ public class MassiveOfMassives_13 {
             System.out.println();
         }
         // bubble sort by descending
-      for (int index = 0; index < sideSize; index++) {
+        for (int index = 0; index < sideSize; index++) {
             boolean isSorted = false;
             int buf;
             while (!isSorted) {

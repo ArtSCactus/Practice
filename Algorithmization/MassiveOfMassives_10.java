@@ -8,12 +8,15 @@ package Practice.Algorithmization;
 import java.util.Scanner;
 
 /**
+ * Task condition: 10. Найти положительные элементы главной диагонали квадратной
+ * матрицы.
  *
  * @author ArtSCactus
  */
 public class MassiveOfMassives_10 {
-    public static void doTask(){
-           // declaration of massive/variables and it's initialization
+
+    public static void doTask() {
+        // declaration of massive/variables and it's initialization
         Scanner in = new Scanner(System.in);
         System.out.println("Enter matrix size by: ");
         int matrixSize = in.nextInt();
@@ -37,7 +40,9 @@ public class MassiveOfMassives_10 {
         // output by task condition
         System.out.print("Positive elements of main diagonal: ");
         for (int index = 0; index < matrixSize; index++) {
-                if (matrix[index][index]>0) System.out.print(matrix[index][index]);
+            if (matrix[index][index] > 0) {
+                System.out.print(matrix[index][index]);
+            }
         }
         System.out.println();
     }

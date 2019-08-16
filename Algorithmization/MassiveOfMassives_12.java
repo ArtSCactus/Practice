@@ -8,6 +8,8 @@ package Practice.Algorithmization;
 import java.util.Scanner;
 
 /**
+ * Task condition: 12. Отсортировать строки матрицы по возрастанию и убыванию
+ * значений элементов.
  *
  * @author ArtSCactus
  */

@@ -8,6 +8,9 @@ package Practice.Algorithmization;
 import java.util.Scanner;
 
 /**
+ * Task condition: 9. Задана матрица неотрицательных чисел. Посчитать сумму
+ * элементов в каждом столбце. Определить, какой столбец содержит максимальную
+ * сумму.
  *
  * @author ArtSCactus
  */

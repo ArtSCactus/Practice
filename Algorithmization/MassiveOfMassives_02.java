@@ -8,7 +8,8 @@ package Practice.Algorithmization;
 import java.util.Scanner;
 
 /**
- *
+ *Task condition:
+ * 2. Дана квадратная матрица. Вывести на экран элементы, стоящие на диагонали.
  * @author ArtSCactus
  */
 public class MassiveOfMassives_02 {

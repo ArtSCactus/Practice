@@ -9,7 +9,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- *
+ *Task condition:
+ * 8.Даны дроби p1/q1, p2/q2, ... , pn/qn(pi,qi-натуральные). Составить программу, которая приводит эти дроби к общему
+знаменателю и упорядочивает их в порядке возрастания.
  * @author ArtSCactus
  */
 public class OneDimSorting_08 {

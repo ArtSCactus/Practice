@@ -8,6 +8,8 @@ package Practice.Algorithmization;
 import java.util.Scanner;
 
 /**
+ * Task condition: 15. Найдите наибольший элемент матрицы и заменить все
+ * нечетные элементы на него.
  *
  * @author ArtSCactus
  */
@@ -53,8 +55,8 @@ public class MassiveOfMassives_15 {
                 }
             }
         }
-        System.out.println("The biggest element: "+theBiggestElement);
-         System.out.println("New matrix: ");
+        System.out.println("The biggest element: " + theBiggestElement);
+        System.out.println("New matrix: ");
         for (int indexY = 0; indexY < downSize; indexY++) {
             for (int indexX = 0; indexX < sideSize; indexX++) {
                 System.out.print(matrix[indexX][indexY] + " ");

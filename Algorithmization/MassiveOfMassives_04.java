@@ -8,7 +8,14 @@ package Practice.Algorithmization;
 import java.util.Scanner;
 
 /**
- *
+ * Task condition:
+ *4. Сформировать квадратную матрицу порядка n по заданному образцу(n - четное):
+ * 1  2   3  ... n
+ * n n-1 n-2 ... 1
+ * 1  2   3  ... n
+ * n n-1 n-2 ... 1
+ * ... ... ... ... ...
+ * n n-1 n-2 ... 1
  * @author ArtSCactus
  */
 public class MassiveOfMassives_04 {

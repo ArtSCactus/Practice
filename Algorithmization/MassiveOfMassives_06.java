@@ -8,6 +8,9 @@ package Practice.Algorithmization;
 import java.util.Scanner;
 
 /**
+ * Task condition: 6. Сформировать квадратную матрицу порядка n по заданному
+ * образцу(n - четное): 1 1 1 ... 1 1 1 0 1 1 ... 1 1 0 0 0 1 ... 1 0 0 ... ...
+ * ... 0 1 1 ... 1 1 0 1 1 1 ... 1 1 1
  *
  * @author ArtSCactus
  */
@@ -28,26 +31,26 @@ public class MassiveOfMassives_06 {
         int zeroPointEnd = matrixOrder;
         boolean reverseOrderOfFilling = false;
         for (int indexY = 0; indexY < matrixOrder; indexY++) {
-                        if (zeroPointEnd - zeroPointStart == 1) {
+            if (zeroPointEnd - zeroPointStart == 1) {
                 reverseOrderOfFilling = true;
                 zeroPointStart--;
                 zeroPointEnd++;
             }
             for (int indexX = 0; indexX < matrixOrder; indexX++) {
-                if (indexX <= zeroPointStart || indexX >=zeroPointEnd) {
+                if (indexX <= zeroPointStart || indexX >= zeroPointEnd) {
                     matrix[indexX][indexY] = 0;
                 } else {
                     matrix[indexX][indexY] = 1;
                 }
             }
-             if (reverseOrderOfFilling == false) {
+            if (reverseOrderOfFilling == false) {
                 zeroPointStart++;
                 zeroPointEnd--;
             } else {
                 zeroPointStart--;
                 zeroPointEnd++;
             }
-          
+
         }
         // matrix output
         System.out.println("Your matrix: ");
