@@ -440,8 +440,6 @@ public class ArchiveServer {
      * @throws ParserConfigurationException
      */
     public void run() throws IOException, ClassNotFoundException, TransformerException, SAXException, ParserConfigurationException {
-        // loadDataBase(); temporary disable this method here, because it possibly cause some problems.
-        // possible this method is unnessesary here.
         server = new ServerSocket(4004);
         System.out.println("Server successfully started");
         while(true){
