@@ -440,145 +440,139 @@ public class ArchiveServer {
      * @throws ParserConfigurationException
      */
     public void run() throws IOException, ClassNotFoundException, TransformerException, SAXException, ParserConfigurationException {
-        try {
-            try {
-                // loadDataBase(); temporary disable this method here, because it possibly cause some problems.
-                // possible this method is unnessesary here.
-                server = new ServerSocket(4004);
-                System.out.println("Server successfully started");
-                System.out.println("Waiting for client");
-                clientSocket = server.accept();
-                System.out.println("New user just connected: " + clientSocket.getInetAddress().toString());
-                try {
-                    //Initializing streams for current client.
-                    in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                    out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-                    String login;
-                    String password;
+        // loadDataBase(); temporary disable this method here, because it possibly cause some problems.
+        // possible this method is unnessesary here.
+        server = new ServerSocket(4004);
+        System.out.println("Server successfully started");
+        while(true){
+        System.out.println("Waiting for client");
+        clientSocket = server.accept();
                     try {
-                        while (true) {
-                            System.out.println("Waiting for command");
-                            String word = in.readLine();
-                            System.out.println("Client command: " + word);
-                            switch (word) {
-                                case ("sign in"):
-                                    word = in.readLine();
-                                    login = word;
-                                    System.out.println("Client: " + word);
-                                    word = in.readLine();
-                                    System.out.println("Client: " + word);
-                                    password = word;
-                                    if (signIn(login, password)) {
-                                        out.write("successfull" + "\n");
-                                        out.flush();
-                                    } else {
-                                        out.write("fail" + "\n");
-                                        out.flush();
-                                    }
+        System.out.println("New user just connected: " + clientSocket.getInetAddress().toString());
+            //Initializing streams for current client.
+            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+            String login;
+            String password;
+                while (true) {
+                    System.out.println("Waiting for command");
+                    String word = in.readLine();
+                    System.out.println("Client command: " + word);
+                        switch (word) {
+                            case ("sign in"):
+                                word = in.readLine();
+                                login = word;
+                                System.out.println("Client: " + word);
+                                word = in.readLine();
+                                System.out.println("Client: " + word);
+                                password = word;
+                                if (signIn(login, password)) {
+                                    out.write("successfull" + "\n");
+                                    out.flush();
+                                } else {
+                                    out.write("fail" + "\n");
+                                    out.flush();
+                                }
+                                break;
+                            case ("sign up"):
+                                System.out.println("registring new account");
+                                word = in.readLine();
+                                login = word;
+                                word = in.readLine();
+                                System.out.println("Client: " + word);
+                                password = word;
+                                addAccount(login, password);
+                                out.write("Successfully registred new account" + "\n");
+                                out.flush();
+                                break;
+                            case ("get student"):
+                                if (!isAuthorized()) {
                                     break;
-                                case ("sign up"):
-                                    System.out.println("registring new account");
-                                    word = in.readLine();
-                                    login = word;
-                                    word = in.readLine();
-                                    System.out.println("Client: " + word);
-                                    password = word;
-                                    addAccount(login, password);
-                                    out.write("Successfully registred new account" + "\n");
+                                }
+                                out.write("Got you, will be searching the student. I'm waiting for student name." + "\n");
+                                out.flush();
+                                word = in.readLine();
+                                out.write("Ok, his name " + word + ", i'll search such student." + "\n");
+                                out.flush();
+                                Student foundedStudent = findStudent(word);
+                                if (foundedStudent != null) {
+                                    out.write("Found him: " + foundedStudent.toString() + "\n");
                                     out.flush();
-                                    break;
-                                case ("get student"):
-                                    if (!isAuthorized()) {
-                                        break;
-                                    }
-                                    out.write("Got you, will be searching the student. I'm waiting for student name." + "\n");
+                                } else {
+                                    out.write("Not found");
                                     out.flush();
-                                    word = in.readLine();
-                                    out.write("Ok, his name " + word + ", i'll search such student." + "\n");
-                                    out.flush();
-                                    Student foundedStudent = findStudent(word);
-                                    if (foundedStudent != null) {
-                                        out.write("Found him: " + foundedStudent.toString() + "\n");
-                                        out.flush();
-                                    } else {
-                                        out.write("Not found");
-                                        out.flush();
-                                    }
-                                    break;
-                                case ("add student"):
-                                    if (!currentUser.getRightsStatus() | !isAuthorized()) {
-                                        out.write("Access denied");
-                                        out.flush();
-                                        break;
-                                    }
-                                    out.write("Got you, will be adding new student. I'm waiting for student object" + "\n");
-                                    out.flush();
-                                    inObj = new ObjectInputStream(clientSocket.getInputStream());
-                                    addStudent((Student) inObj.readObject());
-                                    inObj.close();
-                                    out.write("Successfully added" + "\n");
+                                }
+                                break;
+                            case ("add student"):
+                                if (!currentUser.getRightsStatus() | !isAuthorized()) {
+                                    out.write("Access denied");
                                     out.flush();
                                     break;
-                                case ("change student"):
-                                    if (!currentUser.getRightsStatus() | !isAuthorized()) {
-                                        out.write("Access denied" + "\n");
-                                        out.flush();
-                                        break;
-                                    } else {
-                                        out.write("Access is allowed" + "\n");
-                                        out.flush();
-                                    }
-                                    word = in.readLine();
-                                    String studentName = word;
-                                    out.write("Ok, his name " + word + ", i'll search such student." + "\n");
-                                    out.flush();
-                                    //Sengind founded student and remembering it's index
-                                    outObj = new ObjectOutputStream(clientSocket.getOutputStream());
-                                    int indexSaver = getStudentIndexInList(findStudent(studentName));
-                                    outObj.writeObject(findStudent(studentName));
-                                    outObj.flush();
-                                    //Receiving student object and remembering where it was in list, to replace it 
-                                    //for changed student.
-                                    inObj = new ObjectInputStream(clientSocket.getInputStream());
-                                    Student changedStudent = (Student) inObj.readObject();
-                                    students.set(indexSaver, changedStudent);
-                                    inObj.close();
-                                    outObj.close();
-                                    saveStudents();
-                                    out.write("Successfully changed" + "\n");
-                                    out.flush();
-                                    System.out.println("Student has been successfully changed.");
-                                    break;
-                                default:
-                                    out.write("I'm sorry, due some errors something is gone wrong. " + "\n");
+                                }
+                                out.write("Got you, will be adding new student. I'm waiting for student object" + "\n");
+                                out.flush();
+                                inObj = new ObjectInputStream(clientSocket.getInputStream());
+                                addStudent((Student) inObj.readObject());
+                                inObj.close();
+                                out.write("Successfully added" + "\n");
+                                out.flush();
+                                break;
+                            case ("change student"):
+                                if (!currentUser.getRightsStatus() | !isAuthorized()) {
+                                    out.write("Access denied" + "\n");
                                     out.flush();
                                     break;
-                            }
+                                } else {
+                                    out.write("Access is allowed" + "\n");
+                                    out.flush();
+                                }
+                                word = in.readLine();
+                                String studentName = word;
+                                out.write("Ok, his name " + word + ", i'll search such student." + "\n");
+                                out.flush();
+                                //Sengind founded student and remembering it's index
+                                outObj = new ObjectOutputStream(clientSocket.getOutputStream());
+                                int indexSaver = getStudentIndexInList(findStudent(studentName));
+                                outObj.writeObject(findStudent(studentName));
+                                outObj.flush();
+                                //Receiving student object and remembering where it was in list, to replace it 
+                                //for changed student.
+                                inObj = new ObjectInputStream(clientSocket.getInputStream());
+                                Student changedStudent = (Student) inObj.readObject();
+                                students.set(indexSaver, changedStudent);
+                                inObj.close();
+                                outObj.close();
+                                saveStudents();
+                                out.write("Successfully changed" + "\n");
+                                out.flush();
+                                System.out.println("Student has been successfully changed.");
+                                break;
+                            default:
+                                out.write("I'm sorry, due some errors something is gone wrong. " + "\n");
+                                out.flush();
+                                break;
                         }
+                }
+                    } catch (NullPointerException ex) {
+                        System.out.println("Client has cutted down the connection.");
+                        currentUser = null;
+                        in.close();
+                        out.close();
                     } catch (SocketException ex) {
                         System.out.println("Client has cutted down the connection.");
-                    }
-                } finally {
-                    in.close();
-                    out.close();
-                    clientSocket.close();
-                }
-            } finally {
-                System.out.println("Server has been closed");
-                server.close();
-            }
-        } catch (IOException e) {
-            System.err.println(e);
+                        currentUser = null;
+                        in.close();
+                        out.close();
+                   }
+            } 
         }
-    }
-
-    /**
-     * Finds given student in a student list and returns it's index in this
-     * list. If such student wasn't found will be returned -1.
-     *
-     * @param student
-     * @return index or -1
-     */
+        /**
+         * Finds given student in a student list and returns it's index in this
+         * list. If such student wasn't found will be returned -1.
+         *
+         * @param student
+         * @return index or -1
+         */
     public int getStudentIndexInList(Student student) {
         if (student == null) {
             throw new NullPointerException("Student cannot be null");

@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 /**
  *Task condition:
- * 16. Магическим квадратом порядка n называется квадратная матрица размера nxn, составленная из чисел 1, 2, 3,
-..., 2 n так, что суммы по каждому столбцу, каждой строке и каждой из двух больших диагоналей равны между
+ * 16. Магическим квадратом порядка matrixOrder называется квадратная матрица размера nxn, составленная из чисел 1, 2, 3,
+..., 2 matrixOrder так, что суммы по каждому столбцу, каждой строке и каждой из двух больших диагоналей равны между
 собой. Построить такой квадрат. Пример магического квадрата порядка 3:
 6 1 8
 7 5 3
@@ -20,153 +20,152 @@ import java.util.Scanner;
 public class MassiveOfMassives_16 {
 
     public static void doTask() {
-        int n = 0, square[][];
+        int matrixOrder = 0, matrix[][];
         System.out.print("Enter matrix Order: ");
         Scanner in = new Scanner(System.in);
-        n = in.nextInt();
+        matrixOrder = in.nextInt();
         in.close();
         System.out.println();
-        if (n % 4 == 0) {
-            square = magicSquareDoublyEven(n);
-        } else if (n % 2 != 0) {
-            square = magicSquareOdd(n);
+        if (matrixOrder % 4 == 0) {
+            matrix = magicSquareDoublyEven(matrixOrder);
+        } else if (matrixOrder % 2 != 0) {
+            matrix = magicSquareOdd(matrixOrder);
         } else {
-            square = magicSquareSinglyEven(n);
+            matrix = magicSquareSinglyEven(matrixOrder);
         }
-        displaySquare(square);
+        displaySquare(matrix);
         System.out.println();
     }
 
-    static int[][] magicSquareOdd(int n) {
+    static int[][] magicSquareOdd(int matrixOrder) {
         int num = 1, row, col;
-        int[][] square = new int[n][n];
-        row = n / 2;
-        col = n - 1;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                square[i][j] = 0;
+        int[][] matrix = new int[matrixOrder][matrixOrder];
+        row = matrixOrder / 2;
+        col = matrixOrder - 1;
+        for (int rowIndex = 0; rowIndex < matrixOrder; rowIndex++) {
+            for (int columnIndex = 0; columnIndex < matrixOrder; columnIndex++) {
+                matrix[rowIndex][columnIndex] = 0;
             }
         }
-        while (num <= n * n) {
-
-            if (row < 0 && col >= n) {
+        while (num <= matrixOrder * matrixOrder) {
+            if (row < 0 && col >= matrixOrder) {
                 row = 0;
-                col = n - 2;
+                col = matrixOrder - 2;
             } else {
                 if (row < 0) {
-                    row = row + n;
+                    row = row + matrixOrder;
                 } else if (col >= 0) {
-                    col = col % n;
+                    col = col % matrixOrder;
                 }
 
             }
-            if (square[row][col] != 0) {
+            if (matrix[row][col] != 0) {
                 row = row + 1;
                 col = col - 2;
                 continue;
             } else {
-                square[row][col] = num++;
+                matrix[row][col] = num++;
             }
             row = row - 1;
             col = col + 1;
         }
-        return square;
+        return matrix;
     }
 
-    static int[][] magicSquareDoublyEven(int n) {
-        int[][] square = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                square[i][j] = 4 * i + j + 1;
+    static int[][] magicSquareDoublyEven(int matrixOrder) {
+        int[][] matrix = new int[matrixOrder][matrixOrder];
+        for (int rowIndex = 0; rowIndex < matrixOrder; rowIndex++) {
+            for (int columnIndex = 0; columnIndex < matrixOrder; columnIndex++) {
+                matrix[rowIndex][columnIndex] = 4 * rowIndex + columnIndex + 1;
             }
         }
-        for (int i = 0; i < n / 4; i++) {
-            for (int j = 0; j < n / 4; j++) {
-                square[i][j] = n * n + 1 - square[i][j];
+        for (int rowIndex = 0; rowIndex < matrixOrder / 4; rowIndex++) {
+            for (int columnIndex = 0; columnIndex < matrixOrder / 4; columnIndex++) {
+                matrix[rowIndex][columnIndex] = matrixOrder * matrixOrder + 1 - matrix[rowIndex][columnIndex];
             }
         }
-        for (int i = 0; i < n / 4; i++) {
-            for (int j = 3 * n / 4; j < n; j++) {
-                square[i][j] = n * n + 1 - square[i][j];
+        for (int rowIndex = 0; rowIndex < matrixOrder / 4; rowIndex++) {
+            for (int columnIndex = 3 * matrixOrder / 4; columnIndex < matrixOrder; columnIndex++) {
+                matrix[rowIndex][columnIndex] = matrixOrder * matrixOrder + 1 - matrix[rowIndex][columnIndex];
             }
         }
-        for (int i = 3 * n / 4; i < n; i++) {
-            for (int j = 0; j < n / 4; j++) {
-                square[i][j] = n * n + 1 - square[i][j];
+        for (int rowIndex = 3 * matrixOrder / 4; rowIndex < matrixOrder; rowIndex++) {
+            for (int columnIndex = 0; columnIndex < matrixOrder / 4; columnIndex++) {
+                matrix[rowIndex][columnIndex] = matrixOrder * matrixOrder + 1 - matrix[rowIndex][columnIndex];
             }
         }
-        for (int i = 3 * n / 4; i < n; i++) {
-            for (int j = 3 * n / 4; j < n; j++) {
-                square[i][j] = n * n + 1 - square[i][j];
+        for (int rowIndex = 3 * matrixOrder / 4; rowIndex < matrixOrder; rowIndex++) {
+            for (int columnIndex = 3 * matrixOrder / 4; columnIndex < matrixOrder; columnIndex++) {
+                matrix[rowIndex][columnIndex] = matrixOrder * matrixOrder + 1 - matrix[rowIndex][columnIndex];
             }
         }
-        for (int i = n / 4; i < 3 * n / 4; i++) {
-            for (int j = n / 4; j < 3 * n / 4; j++) {
-                square[i][j] = n * n + 1 - square[i][j];
+        for (int rowIndex = matrixOrder / 4; rowIndex < 3 * matrixOrder / 4; rowIndex++) {
+            for (int columnIndex = matrixOrder / 4; columnIndex < 3 * matrixOrder / 4; columnIndex++) {
+                matrix[rowIndex][columnIndex] = matrixOrder * matrixOrder + 1 - matrix[rowIndex][columnIndex];
             }
         }
-        return square;
+        return matrix;
     }
 
-    static void displaySquare(int[][] square) {
-        int n = square.length;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                System.out.print(square[i][j] + "\t");
+    static void displaySquare(int[][] matrix) {
+        int matrixOrder = matrix.length;
+        for (int rowIndex = 0; rowIndex < matrixOrder; rowIndex++) {
+            for (int columnIndex = 0; columnIndex < matrixOrder; columnIndex++) {
+                System.out.print(matrix[rowIndex][columnIndex] + "\t");
             }
             System.out.println("\n");
         }
     }
 
-    static int[][] magicSquareSinglyEven(int n) {
-        if (n == 2) {
-            System.out.println("No normal magic square of order 2 exists!");
+    static int[][] magicSquareSinglyEven(int matrixOrder) {
+        if (matrixOrder == 2) {
+            System.out.println("No normal magic matrix of order 2 exists!");
             //System.exit(0);
-            int number = 1 + (int) (Math.random() * (n * n) + 1);
-                    int[][] square = new int[n][n];
-                    for (int indexX=0; indexX<n; indexX++)
-                        for (int indexY=0; indexY<n; indexY++)
-                        square[indexX][indexY] = number;
-                    return square;
+            int number = 1 + (int) (Math.random() * (matrixOrder * matrixOrder) + 1);
+                    int[][] matrix = new int[matrixOrder][matrixOrder];
+                    for (int indexX=0; indexX<matrixOrder; indexX++)
+                        for (int indexY=0; indexY<matrixOrder; indexY++)
+                        matrix[indexX][indexY] = number;
+                    return matrix;
         }
-        int[][] square = new int[n][n];
+        int[][] matrix = new int[matrixOrder][matrixOrder];
         int[][] quarter;
-        quarter = magicSquareOdd(n / 2);
+        quarter = magicSquareOdd(matrixOrder / 2);
 
-        //for top left quarter square
-        for (int i = 0; i < n / 2; i++) {
-            for (int j = 0; j < n / 2; j++) {
-                square[i][j] = quarter[i][j];
-                square[n / 2 + i][n / 2 + j] = quarter[i][j] + (n * n) / 4;
-                square[i][n / 2 + j] = quarter[i][j] + (n * n) / 2;
-                square[n / 2 + i][j] = quarter[i][j] + 3 * (n * n) / 4;
+        //for top left quarter matrix
+        for (int rowIndex = 0; rowIndex < matrixOrder / 2; rowIndex++) {
+            for (int columnIndex = 0; columnIndex < matrixOrder / 2; columnIndex++) {
+                matrix[rowIndex][columnIndex] = quarter[rowIndex][columnIndex];
+                matrix[matrixOrder / 2 + rowIndex][matrixOrder / 2 + columnIndex] = quarter[rowIndex][columnIndex] + (matrixOrder * matrixOrder) / 4;
+                matrix[rowIndex][matrixOrder / 2 + columnIndex] = quarter[rowIndex][columnIndex] + (matrixOrder * matrixOrder) / 2;
+                matrix[matrixOrder / 2 + rowIndex][columnIndex] = quarter[rowIndex][columnIndex] + 3 * (matrixOrder * matrixOrder) / 4;
             }
         }
-        int k = (n - 1) / 4;
+        int k = (matrixOrder - 1) / 4;
 
-        for (int i = 0; i < k; i++) {
-            for (int j = 0; j < n / 2; j++) {
-                int temp = square[j][i];
-                square[j][i] = square[j + n / 2][i];
-                square[j + n / 2][i] = temp;
-                if ((i + 1) < k) {
-                    temp = square[j][n - i - 1];
-                    square[j][n - i - 1] = square[j + n / 2][n - i - 1];
-                    square[j + n / 2][n - i - 1] = temp;
+        for (int rowIndex = 0; rowIndex < k; rowIndex++) {
+            for (int columnIndex = 0; columnIndex < matrixOrder / 2; columnIndex++) {
+                int temp = matrix[columnIndex][rowIndex];
+                matrix[columnIndex][rowIndex] = matrix[columnIndex + matrixOrder / 2][rowIndex];
+                matrix[columnIndex + matrixOrder / 2][rowIndex] = temp;
+                if ((rowIndex + 1) < k) {
+                    temp = matrix[columnIndex][matrixOrder - rowIndex - 1];
+                    matrix[columnIndex][matrixOrder - rowIndex - 1] = matrix[columnIndex + matrixOrder / 2][matrixOrder - rowIndex - 1];
+                    matrix[columnIndex + matrixOrder / 2][matrixOrder - rowIndex - 1] = temp;
                 }
             }
         }
 
         //undo the unneccessary swap
-        int temp = square[n / 4][k - 1];
-        square[n / 4][k - 1] = square[3 * n / 4][k - 1];
-        square[3 * n / 4][k - 1] = temp;
+        int temp = matrix[matrixOrder / 4][k - 1];
+        matrix[matrixOrder / 4][k - 1] = matrix[3 * matrixOrder / 4][k - 1];
+        matrix[3 * matrixOrder / 4][k - 1] = temp;
 
         //swap the diagonal elements
-        temp = square[n / 4][k];
-        square[n / 4][k] = square[3 * n / 4][k];
-        square[3 * n / 4][k] = temp;
+        temp = matrix[matrixOrder / 4][k];
+        matrix[matrixOrder / 4][k] = matrix[3 * matrixOrder / 4][k];
+        matrix[3 * matrixOrder / 4][k] = temp;
 
-        return square;
+        return matrix;
     }
 }

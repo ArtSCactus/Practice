@@ -80,29 +80,18 @@ public class Client {
                     System.out.println("1-sign in\n2-sign up\n3-exit");
                     String command = reader.readLine();
                     switch (command) {
-                        case ("1"):// all commented rows here is a complete dialog between
-                            // client and server, that shows each step of communicating
-                            //System.out.println("Sending command");
-                            //String word = reader.readLine();
+                        case ("1"):
                             //Sending command to server, that we are going to sign in
                             out.write("sign in" + "\n");
                             out.flush();
-                            //out.write("sign in");
-                            //out.flush();
-                            //   String serverWord = in.readLine();
-                            // System.out.println("Server: " + serverWord);
                             System.out.print("Login: ");
                             String login = reader.readLine();
                             out.write(login + "\n");
                             out.flush();
-                            //   String serverWord = in.readLine();
-                            //  System.out.println("Server: " + serverWord);
                             System.out.print("Password: ");
                             String password = reader.readLine();
                             out.write(password + "\n");
                             out.flush();
-                            //   String     serverWord = in.readLine();
-                            //      System.out.println("Server: " + serverWord);
                             String serverWord = in.readLine();
                             System.out.println("Server: " + serverWord);
                             if (serverWord.equals("successfull")) {
@@ -187,6 +176,7 @@ public class Client {
                     outObj = new ObjectOutputStream(clientSocket.getOutputStream());
                     outObj.writeObject(constructStudent());
                     outObj.flush();
+                    outObj.close();
                     serverWord = in.readLine();
                     System.out.println("Server: " + serverWord);
                     break;
@@ -218,6 +208,8 @@ public class Client {
                     outObj = new ObjectOutputStream(clientSocket.getOutputStream());
                     outObj.writeObject(student);
                     outObj.flush();
+                    inObj.close();
+                    outObj.close();
                     serverWord = in.readLine();
                     System.out.println("Server: " + serverWord);
                     break;
@@ -290,12 +282,10 @@ public class Client {
      * @throws IOException
      */
     public void closeThreads() throws IOException {
-        inObj.close();
-        outObj.close();
         in.close();
         out.close();
         clientSocket.close();
-        System.out.println("Connection to the server has been closed");
+        System.out.println("Connection to the server has been closed\nExiting  the programm...");
         System.exit(0);
     }
 }
